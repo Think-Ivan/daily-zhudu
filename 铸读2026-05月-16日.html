@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日铸读 · 2026年5月16日</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: #f8f8f6;
+    color: #2c2c2c;
+  }
+
+  .top-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #c9a96e 0%, #e8c99a 30%, #a8c4b8 60%, #7ba7bc 80%, #c9a96e 100%);
+  }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 52px 36px 72px; }
+
+  .header { margin-bottom: 52px; }
+  .header-eyebrow { font-size: 11px; letter-spacing: 4px; color: #c9a96e; text-transform: uppercase; margin-bottom: 10px; }
+  .header-title { font-size: 30px; font-weight: 300; color: #1a1a1a; letter-spacing: 0.5px; }
+  .header-title strong { font-weight: 700; }
+  .header-meta { margin-top: 10px; font-size: 13px; color: #bbb; letter-spacing: 1px; }
+  .header-rule { margin-top: 20px; height: 1px; background: linear-gradient(90deg, #e0d4bc, #d0e0d8, transparent); }
+
+  .section { margin-bottom: 56px; }
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+  .section-tag { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; color: #fff; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+  .tag-news { background: #2c2c2c; }
+  .tag-word { background: #a8c4b8; }
+  .tag-book { background: #7ba7bc; }
+  .section-num { font-size: 11px; color: #ddd; font-weight: 600; letter-spacing: 1px; }
+
+  /* 新闻 */
+  .news-item { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid #eeece8; align-items: flex-start; }
+  .news-item:last-child { border-bottom: none; }
+  .news-index { font-size: 10px; font-weight: 800; color: #c9a96e; letter-spacing: 1px; padding-top: 3px; }
+  .news-cat { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #fff; padding: 2px 7px; border-radius: 3px; display: inline-block; margin-bottom: 6px; }
+  .cat-model { background: #7ba7bc; }
+  .cat-global { background: #9b8ea8; }
+  .cat-cn { background: #c9a96e; }
+  .cat-case { background: #a8c4b8; color: #2c2c2c !important; }
+  .cat-hangzhou { background: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 600; color: #1a1a1a; line-height: 1.5; margin-bottom: 5px; }
+  .news-body { font-size: 13px; color: #888; line-height: 1.75; }
+
+  /* 单词 */
+  .word-wrap { background: #fff; border-radius: 14px; border: 1px solid #eeece8; overflow: hidden; }
+  .word-top { padding: 28px 32px 22px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 42px; font-weight: 800; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .word-phonetic { font-size: 14px; color: #a8c4b8; font-family: monospace; }
+  .speak-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #f0f6f4; border: 1px solid #c8ddd8; color: #5a9a8a;
+    font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px;
+    cursor: pointer; letter-spacing: 0.5px; transition: all 0.2s;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  .speak-btn:hover { background: #a8c4b8; color: #fff; border-color: #a8c4b8; }
+  .word-zh { font-size: 14px; color: #666; line-height: 1.7; }
+  .word-zh strong { color: #1a1a1a; }
+  .word-zh small { color: #aaa; font-size: 12px; display: block; margin-top: 4px; }
+  .word-quote-wrap { padding: 22px 32px; background: #faf9f7; }
+  .quote-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #ccc; margin-bottom: 10px; }
+  .quote-en { font-size: 15px; color: #333; line-height: 1.75; font-style: italic; margin-bottom: 8px; }
+  .quote-en em { font-style: normal; color: #c9a96e; font-weight: 700; }
+  .quote-zh { font-size: 12px; color: #aaa; line-height: 1.6; }
+
+  /* 单词回顾区 */
+  .word-recall-wrap { padding: 22px 32px; background: #fff; border-top: 1px solid #f2f0ec; }
+  .word-recall-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #ccc; margin-bottom: 14px; }
+  .word-recall-list { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .word-recall-item { display: grid; grid-template-columns: 56px 110px 1fr auto; gap: 12px; align-items: center; padding: 8px 12px; border-radius: 8px; background: #faf9f7; border: 1px solid #f0eeea; }
+  .word-recall-date { font-size: 10px; color: #bbb; font-family: monospace; letter-spacing: 0.5px; }
+  .word-recall-en { font-size: 14px; font-weight: 700; letter-spacing: -0.3px; }
+  .word-recall-en.c1 { color: #c9a96e; }
+  .word-recall-en.c2 { color: #7ba7bc; }
+  .word-recall-en.c3 { color: #a8c4b8; }
+  .word-recall-en.c4 { color: #9b8ea8; }
+  .word-recall-zh { font-size: 12px; color: #777; line-height: 1.5; }
+  .word-recall-empty { font-size: 11px; color: #c8c8c8; font-style: italic; padding: 10px 12px; }
+  .speak-mini {
+    background: #f0f6f4; border: 1px solid #e0eae6; color: #5a9a8a;
+    font-size: 10px; padding: 3px 9px; border-radius: 14px; cursor: pointer;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; transition: all 0.2s;
+  }
+  .speak-mini:hover { background: #a8c4b8; color: #fff; border-color: #a8c4b8; }
+
+  /* 书摘 */
+  .book-wrap { background: #fff; border-radius: 14px; border: 1px solid #eeece8; overflow: hidden; }
+  .book-header { padding: 28px 32px 20px; border-bottom: 1px solid #f2f0ec; background: linear-gradient(135deg, #fdf9f3, #f5f8fb); }
+  .book-badge { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 10px; }
+  .book-title { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .book-author { font-size: 13px; color: #aaa; }
+  .book-body { padding: 28px 32px; }
+  .thesis-box { background: linear-gradient(135deg, #fef9f0, #fdf6ec); border-left: 3px solid #c9a96e; padding: 16px 20px; border-radius: 0 8px 8px 0; margin-bottom: 28px; }
+  .thesis-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #c9a96e; margin-bottom: 7px; }
+  .thesis-text { font-size: 14px; color: #444; line-height: 1.8; }
+  .points-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 16px; }
+  .point-item { display: flex; gap: 14px; margin-bottom: 22px; align-items: flex-start; }
+  .point-n { width: 22px; height: 22px; border-radius: 50%; background: #f0f0ec; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #999; flex-shrink: 0; margin-top: 2px; }
+  .point-head { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .point-body { font-size: 13.5px; color: #555; line-height: 1.85; }
+  .deep-read { background: #f7f5f2; border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; }
+  .deep-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 8px; }
+  .deep-text { font-size: 13.5px; color: #555; line-height: 1.85; }
+  .book-review { font-size: 13px; color: #aaa; font-style: italic; text-align: right; padding-top: 18px; border-top: 1px solid #f0eeea; }
+
+  /* 明日书单 */
+  .tmr-wrap { margin-top: 28px; }
+  .tmr-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #ccc; text-align: center; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { border: 1px solid #eeece8; border-radius: 10px; padding: 14px 16px; background: #faf9f7; }
+  .tmr-type { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #bbb; margin-bottom: 7px; text-transform: uppercase; }
+  .tmr-name { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 5px; line-height: 1.4; }
+  .tmr-why { font-size: 11px; color: #aaa; line-height: 1.5; }
+
+  /* 页脚 */
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eeecea; display: flex; justify-content: space-between; align-items: center; }
+  .footer-l { font-size: 12px; color: #ccc; }
+  .footer-r { font-size: 12px; color: #c9a96e; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="container">
+
+  <div class="header">
+    <div class="header-eyebrow">Daily Reading · 每日铸读</div>
+    <div class="header-title">周末，<strong>也读点有用的。</strong></div>
+    <div class="header-meta">2026年5月16日 · 星期六 · 第 3 期</div>
+    <div class="header-rule"></div>
+  </div>
+
+  <!-- 板块一：AI 新闻 -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-tag tag-news">AI · 今日要闻</span>
+      <span class="section-num">01</span>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">01</div>
+      <div>
+        <span class="news-cat cat-model">大模型动态</span>
+        <div class="news-title">Anthropic 发布 Claude Opus 4.7：100万上下文成为标配，Agent 可连续工作 8 小时</div>
+        <div class="news-body">Anthropic 正式发布 Claude Opus 4.7，1M token 上下文窗口成为旗舰标配。新版本最大突破在于"持续工作能力"——内部测试中，Agent 可连续完成长达 8 小时的复杂任务（如从零搭建中型项目）而无需人工介入。OpenAI 同期发布 GPT-5.5，主打"低延迟 + 多模态实时"。模型竞争已从"参数比赛"转向"工作时长比赛"。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">02</div>
+      <div>
+        <span class="news-cat cat-global">全球动态</span>
+        <div class="news-title">麦肯锡报告：全球 23% 企业岗位将在 2030 年前被 AI 重构，HR 居首</div>
+        <div class="news-body">麦肯锡《2026 全球 AI 用工报告》指出：到 2030 年，全球 23% 的白领岗位将被 AI 显著重构，其中 HR、客服、初级法务、财务岗位首当其冲。但报告也指出反直觉发现：在已部署 AI 的企业中，HR 部门人数虽减少，但 HRD/CHO 的薪酬中位数反而上涨 28%——因为高层 HR 的核心能力已从"管流程"转向"设计组织和 AI 协作系统"，这种能力市场极度稀缺。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">03</div>
+      <div>
+        <span class="news-cat cat-cn">国内大厂</span>
+        <div class="news-title">DeepSeek-V4 周末突袭发布，单卡推理成本再降 60%</div>
+        <div class="news-body">DeepSeek 5月16日凌晨突袭发布 V4 模型。在 MMLU、HumanEval 等核心榜单接近 Claude Opus 4.7 水平的同时，单卡推理成本较 V3 再降 60%。月之暗面 Kimi 同日宣布全面开放 200 万字上下文。国内"低成本+高性能"路线对国外大厂形成持续压力——华尔街已开始重新评估 OpenAI 和 Anthropic 的估值模型。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">04</div>
+      <div>
+        <span class="news-cat cat-case">企业落地</span>
+        <div class="news-title">字节跳动 HR 大变革：取消固定 HRBP 编制，转为"AI+少数专家"模式</div>
+        <div class="news-body">据《晚点 LatePost》5月16日报道，字节跳动 People 团队近期完成大规模调整：传统 HRBP 编制取消约 40%，留下来的人转为"组织设计专家"和"AI 训练师"——专门给内部 AI HR 助理喂数据、设规则。被裁撤的 HRBP 多数转为业务部门"组织顾问"内部活水。这是国内大厂 HR 体系最激进的一次重构，也可能成为其他公司效仿的模板。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">05</div>
+      <div>
+        <span class="news-cat cat-hangzhou">杭州动态</span>
+        <div class="news-title">杭州未来科技城启动"AI HR 共生实验室"，首批接收 30 家企业</div>
+        <div class="news-body">杭州未来科技城5月15日宣布启动"AI HR 共生实验室"，首批接收 30 家企业进驻，提供从组织诊断、AI 工具适配、HR 团队再培训的一站式支持。重点服务对象是"年营收 1-10 亿的成长型公司"——也就是 HR 体系最难升级的腰部企业。这对杭州本地 HR 圈是个值得关注的信号：政府开始把"组织能力"当作产业竞争力的一部分来扶持。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块二：每日一词 -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-tag tag-word">每日一词</span>
+      <span class="section-num">02</span>
+    </div>
+    <div class="word-wrap">
+      <div class="word-top">
+        <div class="word-en">Inflection</div>
+        <div class="word-phonetic-row">
+          <span class="word-phonetic">/ɪnˈflekʃ(ə)n/</span>
+          <button class="speak-btn" onclick="speakWord('inflection')">
+            ▶ 点击发音
+          </button>
+        </div>
+        <div class="word-zh">
+          <strong>n.</strong> &nbsp;拐点；曲线改变方向的那个点；命运的转折时刻
+          <small>职场常见搭配：inflection point · career inflection · at an inflection · reach an inflection</small>
+        </div>
+      </div>
+      <div class="word-quote-wrap">
+        <div class="quote-label">QUOTE OF THE DAY</div>
+        <div class="quote-en">"Most people miss their <em>inflection</em> point because they're still optimizing the previous game—long after the rules have changed."</div>
+        <div class="quote-zh">——Andy Grove ｜ 大多数人错过自己的拐点，是因为他们还在为"上一场游戏"努力——而那场游戏的规则，早已改变。</div>
+      </div>
+      <div class="word-recall-wrap">
+        <div class="word-recall-label">PAST WORDS · 过往单词回顾</div>
+        <div class="word-recall-list">
+          <div class="word-recall-item">
+            <div class="word-recall-date">05-15</div>
+            <div class="word-recall-en c1">Pivot</div>
+            <div class="word-recall-zh"><strong>v./n.</strong> 转向；战略性转折；关键支点</div>
+            <button class="speak-mini" onclick="speakWord('pivot')">▶ 听</button>
+          </div>
+          <div class="word-recall-item">
+            <div class="word-recall-date">05-14</div>
+            <div class="word-recall-en c2">Leverage</div>
+            <div class="word-recall-zh"><strong>n./v.</strong> 杠杆；借力；以小博大</div>
+            <button class="speak-mini" onclick="speakWord('leverage')">▶ 听</button>
+          </div>
+          <div class="word-recall-empty">— 单词库建档中，往后每日累积 4 个老词回顾 —</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三：今日书摘 -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-tag tag-book">今日书摘</span>
+      <span class="section-num">03</span>
+    </div>
+    <div class="book-wrap">
+      <div class="book-header">
+        <div class="book-badge">BOOK OF THE DAY · 文明史 / 思想巨著</div>
+        <div class="book-title">《人类简史》</div>
+        <div class="book-author">尤瓦尔·赫拉利 著 · 希伯来大学历史学教授 · 全球销量超 4500 万册</div>
+      </div>
+      <div class="book-body">
+
+        <div class="thesis-box">
+          <div class="thesis-label">一句话核心</div>
+          <div class="thesis-text">智人之所以统治地球，不是因为更聪明、更强壮、更勤奋——而是因为我们是唯一能"集体相信虚构故事"的物种。所有组织、国家、货币、宗教，本质上都是"被共同相信的故事"。</div>
+        </div>
+
+        <div class="points-title">THREE INSIGHTS · 三个值得记住的洞见</div>
+
+        <div class="point-item">
+          <div class="point-n">1</div>
+          <div class="point-content">
+            <div class="point-head">"认知革命"：能讲故事的物种，才能组织万人协作</div>
+            <div class="point-body">7 万年前，智人和尼安德特人在体格、脑容量上其实差不多。但智人发生了一件神秘的事——能用语言"讲虚构的故事"。狮子真实存在，但"狮子是部落保护神"是虚构的；老板真实存在，但"公司"是虚构的。<br><br>赫拉利点破了一个很多人没意识到的事实：黑猩猩最多能维持 50 只规模的协作群体，因为协作必须建立在"亲眼见过、亲手互动过"的基础上。但智人能让 10 万人为一面"国旗"打仗、为一个"品牌"加班——因为我们能让所有人共同相信同一个虚构。<br><br>这意味着：你所在的"公司"，本质上不是一栋楼或一群人，而是"所有人共同相信它存在"这件事。哪天大家不再相信，它就不存在了。</div>
+          </div>
+        </div>
+
+        <div class="point-item">
+          <div class="point-n">2</div>
+          <div class="point-content">
+            <div class="point-head">"农业革命"：是人类驯化了小麦，还是小麦驯化了人类？</div>
+            <div class="point-body">这是赫拉利最具颠覆性的观点之一。教科书告诉我们：1万年前农业革命让人类摆脱采集狩猎，迈向文明。但赫拉利反问：从"个体智人"的角度看，农业革命让人类工时变长、营养变差、寿命缩短、传染病大增——这分明是一场灾难。<br><br>真正的赢家是小麦：从一种野草变成全球种植面积最大的物种，让"人类"这个物种心甘情愿为它弯腰、除草、灌溉、看护。<br><br>赫拉利提出一个概念叫"历史的陷阱"——某些选择一旦做出，就再也回不去了。不是因为它更好，而是因为已经没有退路。这个洞察对任何身在体制中的人都值得反复思考：你以为是你在"经营这份工作"，还是这份工作在"经营你"？</div>
+          </div>
+        </div>
+
+        <div class="point-item">
+          <div class="point-n">3</div>
+          <div class="point-content">
+            <div class="point-head">"金钱、帝国、宗教"：让陌生人能合作的三大虚构</div>
+            <div class="point-body">人类历史上有三件东西让"陌生人之间的大规模合作"成为可能：金钱、帝国、宗教。它们的共同点是——都是"虚构的故事"，但只要所有人都信，它就比任何物理实在更强大。<br><br>金钱本质上是"信任"。你愿意接受一张纸，是因为你相信别人也会接受。它从贝壳到金币到纸币到比特币，本体一直在变，但底层逻辑没变——一个共同的虚构。<br><br>帝国不是"一个民族征服另一个"，而是"一套故事被更多人接受"。罗马帝国能存在，是因为高卢人、不列颠人、犹太人都开始相信"做罗马人"是一件值得追求的事。<br><br>这个视角对 HRD 极其有用：员工对公司的"忠诚"，本质上不是对一栋楼、一份合同的忠诚，而是对"公司讲的故事"的相信程度。当员工不再相信这个故事，再高的薪水也只是延缓离开的时间。</div>
+          </div>
+        </div>
+
+        <div class="deep-read">
+          <div class="deep-label">延伸思考 · 带回你的工作和处境</div>
+          <div class="deep-text">《人类简史》对一个站在职业拐点上的人，有三个特别值得回味的角度：<br><br>① 你现在的"公司忠诚"，本质上是对"哪个故事"的相信？是"这家公司会持续成长"？是"我会在这里被公平对待"？是"这是我职业身份的一部分"？故事坍塌的那一刻，往往就是身体先于大脑做出反应——开始累、开始没动力。<br><br>② 你是不是也陷入了"小麦陷阱"？这份工作给你的回报，和它消耗你的成本，到底谁更大？很多人不离开，不是因为这份工作更好，而是因为已经"投入太多回不去"——但赫拉利会告诉你：沉没成本是最不该影响选择的东西。<br><br>③ 智人最强的能力是"重新讲故事"。当一个故事不再适合你，最难也最强大的能力，就是给自己讲一个新的故事——一个让你能往前走的故事。这不是自欺欺人，这是赫拉利眼里"人之所以为人"的核心能力。<br><br>读《人类简史》的真正价值，不是知道更多历史，而是<strong>学会从"故事"的视角看待你身处的一切</strong>——包括你所在的公司、你的工作、甚至你对"应该留下还是离开"的判断。</div>
+        </div>
+
+        <div class="book-review">"读完《人类简史》最大的副作用，是再也无法把任何'理所当然'当成理所当然。" ——Ivan 的分身</div>
+
+        <div class="tmr-wrap">
+          <div class="tmr-label">— 明日书单（5月18日 周一），选一本告诉我 —</div>
+          <div class="tmr-grid">
+            <div class="tmr-card">
+              <div class="tmr-type">职场反思</div>
+              <div class="tmr-name">《优秀的绵羊》</div>
+              <div class="tmr-why">威廉·德雷谢维奇 · 名校精英为何活成"高级羊群"，献给所有被体制塑形的人</div>
+            </div>
+            <div class="tmr-card">
+              <div class="tmr-type">人物自传</div>
+              <div class="tmr-name">《奈飞文化手册》</div>
+              <div class="tmr-why">帕蒂·麦考德 · 硅谷最颠覆的 HR 哲学，"我们只招成年人"如何重塑组织</div>
+            </div>
+            <div class="tmr-card">
+              <div class="tmr-type">心智成长</div>
+              <div class="tmr-name">《自我边界》</div>
+              <div class="tmr-why">尼娜·布朗 · 高情绪劳动者的必修课——如何在不冷漠的同时，不再被掏空</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-l">每日铸读 · 2026.05.16 · 周末加更</div>
+    <div class="footer-r">— Ivan 的分身</div>
+  </div>
+
+</div>
+<script>
+function speakWord(word) {
+  // 优先方案：有道词典 TTS（稳定、不依赖系统语音）
+  // type=1 美音，type=2 英音
+  try {
+    const audio = new Audio('https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(word) + '&type=2');
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function() {
+        // 失败则回退到浏览器内置语音合成
+        fallbackTTS(word);
+      });
+    }
+  } catch (e) {
+    fallbackTTS(word);
+  }
+}
+
+function fallbackTTS(word) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US';
+    u.rate = 0.85;
+    u.pitch = 1;
+    window.speechSynthesis.speak(u);
+  } else {
+    alert('当前浏览器不支持发音，请用 Chrome 或 Edge 打开');
+  }
+}
+</script>
+</body>
+</html>
