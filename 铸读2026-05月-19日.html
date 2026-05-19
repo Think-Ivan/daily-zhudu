@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铸读 2026.05.19 · 周二</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f3ef; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1a1a1a; }
+  .top-bar { height: 5px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+
+  .header { margin-bottom: 40px; }
+  .header-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #c9a96e; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+
+  .section { margin-bottom: 36px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; border-bottom: 1px solid #f2f0ec; display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .icon-news { background: #fdf3e3; }
+  .icon-word { background: #e8f4f0; }
+  .icon-book { background: #e8f0f7; }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #bbb; margin-left: auto; }
+
+  /* News */
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ef; }
+  .news-item:last-child { border-bottom: none; }
+  .news-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; }
+  .tag-model { background: #fdf3e3; color: #c9a96e; }
+  .tag-global { background: #e8f0f7; color: #7ba7bc; }
+  .tag-bigco { background: #f0edf7; color: #9b8ea8; }
+  .tag-biz { background: #e8f4f0; color: #5a9e8a; }
+  .tag-hz { background: #fdeee8; color: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; line-height: 1.4; margin-bottom: 6px; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.8; }
+
+  /* Word */
+  .word-new-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #c9a96e; margin-bottom: 12px; }
+  .word-top { padding: 28px 24px 22px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 42px; font-weight: 800; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .word-phonetic { font-size: 14px; color: #a8c4b8; font-family: monospace; }
+  .word-play { background: none; border: 1px solid #e0ddd8; border-radius: 4px; padding: 3px 10px; font-size: 11px; color: #999; cursor: pointer; }
+  .word-play:hover { background: #f5f3ef; }
+  .word-zh { font-size: 14px; color: #666; line-height: 1.7; }
+  .word-zh strong { color: #1a1a1a; }
+  .word-zh small { color: #aaa; font-size: 12px; display: block; margin-top: 4px; }
+  .word-quote-wrap { padding: 16px 24px; border-bottom: 1px solid #f2f0ec; background: #faf9f7; }
+  .word-quote { font-size: 13px; color: #666; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #c9a96e; }
+  .word-quote-author { font-size: 11px; color: #bbb; margin-top: 6px; }
+  .word-recall-wrap { padding: 16px 24px; }
+  .recall-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 12px; }
+  .word-recall-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f3ef; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-date { font-size: 10px; color: #bbb; font-family: monospace; }
+  .recall-word { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .recall-zh { font-size: 12px; color: #888; margin-top: 2px; }
+  .recall-hint { font-size: 12px; color: #aaa; }
+
+  /* Book */
+  .book-header { padding: 24px 24px 18px; border-bottom: 1px solid #f2f0ec; }
+  .book-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 8px; }
+  .book-title { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+  .book-core { font-size: 13px; color: #666; line-height: 1.7; padding: 12px 16px; background: #f5f8fb; border-radius: 6px; border-left: 3px solid #7ba7bc; margin-top: 10px; }
+  .book-body { padding: 24px; }
+  .insight { margin-bottom: 24px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #9b8ea8; margin-bottom: 6px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.85; }
+  .extend-wrap { margin-top: 24px; padding: 18px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .extend-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #e8a87c; margin-bottom: 8px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.85; }
+
+  /* Tomorrow */
+  .tmr-wrap { padding: 20px 24px 24px; border-top: 1px solid #f2f0ec; }
+  .tmr-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { padding: 14px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .tmr-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #bbb; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; line-height: 1.4; }
+  .tmr-desc { font-size: 11px; color: #888; line-height: 1.6; }
+
+  /* Footer */
+  .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ece9e3; }
+  .footer-left { font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
+  .footer-right { font-size: 11px; color: #bbb; }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px 52px; }
+    .header-title { font-size: 22px; }
+    .word-en { font-size: 30px; }
+    .word-top { padding: 20px 18px 16px; }
+    .word-quote-wrap { padding: 16px 18px; }
+    .word-recall-wrap { padding: 16px 18px; }
+    .word-recall-item { grid-template-columns: 48px 1fr auto; gap: 8px; }
+    .word-recall-date { display: none; }
+    .book-header { padding: 20px 18px 16px; }
+    .book-body { padding: 20px 18px; }
+    .book-title { font-size: 18px; }
+    .tmr-grid { grid-template-columns: 1fr; gap: 10px; }
+    .news-title { font-size: 14px; }
+    .news-body { font-size: 12px; }
+    .footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="container">
+
+  <div class="header">
+    <div class="header-label">DAILY ZHUDU · 第 5 期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">2026年5月19日 · 周二 · 从0到1，先找到那个秘密</div>
+  </div>
+
+  <!-- 板块一：AI 今日要闻 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-news">📡</div>
+      <div class="section-title">AI 今日要闻</div>
+      <div class="section-sub">2026.05.19</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-model">大模型动态</div>
+      <div class="news-title">开源模型集体爆发，5月成"开源权重元年"</div>
+      <div class="news-body">Gemma 4、DeepSeek V4、Kimi K26、MiMo 2.5、GLM-5.1在数周内相继发布，多家机构将这一时期称为开源权重模型的"创纪录月份"。xAI内部版本9已完成1.5万亿参数训练，马斯克宣布将在3-4周内向公众开放。对HR而言，这意味着企业自建AI工具的门槛正在快速下降——开源模型让中小公司也能低成本部署内部招聘、绩效分析等HR智能化场景，而不必依赖昂贵的商业API。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-global">全球动态</div>
+      <div class="news-title">中美就AI治理达成政府间对话协议</div>
+      <div class="news-body">中国外交部宣布，特朗普访华期间，中美两国同意建立人工智能政府间对话机制，并将制定AI安全协议。这一协议标志着全球AI监管从各自为政走向大国协调，对跨国企业的AI合规策略影响深远——尤其是在数据跨境、算法审计等HR数字化工具的合规边界上，将带来新的政策参照。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-bigco">国内大厂</div>
+      <div class="news-title">腾讯Hy3调用量暴涨210%，中国大模型周调用量连续三周超越美国</div>
+      <div class="news-body">据1ai.net数据，腾讯Hy3 preview本周调用量环比增长210%，登顶国内大模型使用榜首；中国大模型整体周调用量已连续三周超过美国。阿里CEO吴泳铭同期宣布，未来三年资本开支可能远超3800亿元，重点投向AI数据中心基础设施。国内大厂的算力军备竞赛正在加速，采购决策中"自研 vs 外采"的天平正在向本土大模型倾斜。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-biz">企业落地</div>
+      <div class="news-title">中国法院裁定"以AI替代"不构成合法裁员理由，HR合规红线划定</div>
+      <div class="news-body">杭州一家科技公司因以AI替代为由解雇一名资深员工，被法院判决违法，员工获赔逾28000英镑。多家媒体将此案定性为全球首例明确限制"AI裁员"的司法判决。这一裁决的核心逻辑是：企业引入AI不能成为规避劳动合同义务的借口，裁员必须有独立的合法事由。对HR来说，在推进AI替代人工的流程再造时，必须同步设计合规的岗位调整方案。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-hz">杭州动态</div>
+      <div class="news-title">《人工智能教育杭州倡议》发布，"杭州六小龙"云深处冲刺科创板</div>
+      <div class="news-body">《人工智能教育杭州倡议》正式发布，聚焦AI如何重塑教育与人才培养体系，杭州再次以政策先行者姿态引领全国。与此同时，被列入"杭州AI六小龙"的云深处科技于5月18日获科创板IPO受理，标志着杭州具身智能赛道的头部企业正加速资本化进程。对杭州本地企业HR而言，本土AI独角兽的扩张将在未来12-18个月内带来新一轮高端技术岗位的抢人大战。</div>
+    </div>
+  </div>
+
+  <!-- 板块二：每日一词 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-word">📖</div>
+      <div class="section-title">每日一词</div>
+      <div class="section-sub">1新 · 4回顾</div>
+    </div>
+
+    <div class="word-top">
+      <div class="word-new-label">TODAY'S WORD</div>
+      <div class="word-en">Contrarian</div>
+      <div class="word-phonetic-row">
+        <span class="word-phonetic">/kənˈtreəriən/</span>
+        <button class="word-play" onclick="new Audio('https://dict.youdao.com/dictvoice?audio=contrarian&type=2').play()">▶ 发音</button>
+      </div>
+      <div class="word-zh">
+        <strong>逆向思维者；反共识者</strong><br>
+        坚持与主流观点相反立场的人，尤指在投资、商业或思想领域主动寻找被忽视真相的人。<br>
+        <small>常见搭配：contrarian view（逆向观点）/ contrarian investor（逆向投资者）/ contrarian thinking（反共识思维）</small>
+      </div>
+    </div>
+
+    <div class="word-quote-wrap">
+      <div class="word-quote">"The most <em>contrarian</em> thing of all is not to oppose the crowd but to think for yourself."</div>
+      <div class="word-quote-author">— Peter Thiel，《从0到1》</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="recall-label">RECALL · 近期词汇回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-18</div>
+        <div>
+          <div class="recall-word">Accountability</div>
+          <div class="recall-zh">责任担当；可问责性</div>
+        </div>
+        <div class="recall-hint">为结果负责，不推诿</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-16</div>
+        <div>
+          <div class="recall-word">Inflection</div>
+          <div class="recall-zh">拐点；转折</div>
+        </div>
+        <div class="recall-hint">行业或个人发展的关键转折时刻</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-15</div>
+        <div>
+          <div class="recall-word">Pivot</div>
+          <div class="recall-zh">关键转折；战略转向</div>
+        </div>
+        <div class="recall-hint">在不确定中主动调整方向</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-14</div>
+        <div>
+          <div class="recall-word">Leverage</div>
+          <div class="recall-zh">杠杆；借力放大</div>
+        </div>
+        <div class="recall-hint">用最小资源撬动最大结果</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三：今日书摘 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-book">📚</div>
+      <div class="section-title">今日书摘</div>
+      <div class="section-sub">彼得·蒂尔</div>
+    </div>
+
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《从0到1》</div>
+      <div class="book-core">真正的创业不是复制已有的成功，而是找到一个别人还没看见的秘密——然后在竞争出现之前，把它变成垄断。</div>
+    </div>
+
+    <div class="book-body">
+      <div class="insight">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">竞争是失败者的游戏</div>
+        <div class="insight-body">蒂尔最反直觉的观点：竞争越激烈，利润越薄，越接近零和。真正赚钱的公司都在逃离竞争——它们建立垄断，然后用"我们只是一个小市场的大玩家"来掩盖这个事实。对个人也一样：如果你在一个所有人都在争的赛道上拼命，你赢了也只是赢了一场消耗战。找到一个你能成为第一的细分领域，比在红海里做第二名有价值得多。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">秘密是创业的起点</div>
+        <div class="insight-body">蒂尔问了一个简单但刺穿人心的问题：你相信什么重要的事，但大多数人不同意你？这个问题的答案，就是秘密。秘密不是谎言，也不是幻想——它是一个真实存在但还没被主流承认的事实。Airbnb的秘密是"陌生人愿意住进陌生人家里"，Uber的秘密是"出租车行业的低效是可以被技术颠覆的"。没有秘密的创业，只是在重复别人已经做过的事。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">从0到1，不是从1到N</div>
+        <div class="insight-body">从1到N是复制，是规模化，是把已有的东西做得更多更快更便宜。从0到1是创造，是把一个不存在的东西带到世界上来。蒂尔认为，真正的进步来自垂直突破，而非水平扩张。这对组织建设同样成立：一个能从0到1的团队，和一个擅长从1到N的团队，需要完全不同的人、不同的文化、不同的管理方式——混在一起管，两件事都做不好。</div>
+      </div>
+
+      <div class="extend-wrap">
+        <div class="extend-label">IVAN · 延伸思考</div>
+        <div class="extend-body">你现在面对的去留问题，本质上是一个"从1到N还是从0到1"的选择。留下来，是在一个已有框架里把HR做得更好——这是从1到N，有价值，但天花板清晰。出去创业，是找到一个你相信但别人还没看见的秘密——这是从0到1，风险更高，但可能性是开放的。蒂尔会问你：你现在相信什么重要的事，但你周围的人不同意你？如果你有答案，那个答案可能就是你35岁前那家公司的起点。</div>
+      </div>
+    </div>
+
+    <div class="tmr-wrap">
+      <div class="tmr-label">TOMORROW'S READING LIST · 三选一</div>
+      <div class="tmr-grid">
+        <div class="tmr-card">
+          <div class="tmr-tag">组织心理</div>
+          <div class="tmr-title">《驱动力》</div>
+          <div class="tmr-desc">丹尼尔·平克。薪酬激励为什么失效——自主、专精、目的才是真正驱动人的三件事。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">创业实战</div>
+          <div class="tmr-title">《精益创业》</div>
+          <div class="tmr-desc">埃里克·莱斯。用最小可行产品快速验证假设，在资源耗尽前找到真正的市场需求。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">个人决策</div>
+          <div class="tmr-title">《原则》</div>
+          <div class="tmr-desc">瑞·达利欧。把人生和工作中反复遇到的问题系统化，建立自己的决策操作系统。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">每日铸读 · 2026.05.19 · 星期二</div>
+    <div class="footer-right">— Ivan 的分身</div>
+  </div>
+
+</div>
+</body>
+</html>
