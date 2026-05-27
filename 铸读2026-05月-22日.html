@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铸读 2026.05.22 · 周五</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f3ef; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1a1a1a; }
+  .top-bar { height: 5px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+
+  .header { margin-bottom: 40px; }
+  .header-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #c9a96e; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+
+  .section { margin-bottom: 36px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; border-bottom: 1px solid #f2f0ec; display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .icon-news { background: #fdf3e3; }
+  .icon-word { background: #e8f4f0; }
+  .icon-book { background: #e8f0f7; }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #bbb; margin-left: auto; }
+
+  /* News */
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ef; }
+  .news-item:last-child { border-bottom: none; }
+  .news-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; }
+  .tag-model { background: #fdf3e3; color: #c9a96e; }
+  .tag-global { background: #e8f0f7; color: #7ba7bc; }
+  .tag-bigco { background: #f0edf7; color: #9b8ea8; }
+  .tag-biz { background: #e8f4f0; color: #5a9e8a; }
+  .tag-hz { background: #fdeee8; color: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; line-height: 1.4; margin-bottom: 6px; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.8; }
+
+  /* Word */
+  .word-new-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #c9a96e; margin-bottom: 12px; }
+  .word-top { padding: 28px 24px 22px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 42px; font-weight: 800; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .word-phonetic { font-size: 14px; color: #a8c4b8; font-family: monospace; }
+  .word-play { background: none; border: 1px solid #e0ddd8; border-radius: 4px; padding: 3px 10px; font-size: 11px; color: #999; cursor: pointer; }
+  .word-play:hover { background: #f5f3ef; }
+  .word-zh { font-size: 14px; color: #666; line-height: 1.7; }
+  .word-zh strong { color: #1a1a1a; }
+  .word-zh small { color: #aaa; font-size: 12px; display: block; margin-top: 4px; }
+  .word-quote-wrap { padding: 16px 24px; border-bottom: 1px solid #f2f0ec; background: #faf9f7; }
+  .word-quote { font-size: 13px; color: #666; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #c9a96e; }
+  .word-quote-author { font-size: 11px; color: #bbb; margin-top: 6px; }
+  .word-recall-wrap { padding: 16px 24px; }
+  .recall-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 12px; }
+  .word-recall-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f3ef; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-date { font-size: 10px; color: #bbb; font-family: monospace; }
+  .recall-word { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .recall-zh { font-size: 12px; color: #888; margin-top: 2px; }
+  .recall-hint { font-size: 12px; color: #aaa; }
+
+  /* Book */
+  .book-header { padding: 24px 24px 18px; border-bottom: 1px solid #f2f0ec; }
+  .book-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 8px; }
+  .book-title { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+  .book-core { font-size: 13px; color: #666; line-height: 1.7; padding: 12px 16px; background: #f5f8fb; border-radius: 6px; border-left: 3px solid #7ba7bc; margin-top: 10px; }
+  .book-body { padding: 24px; }
+  .insight { margin-bottom: 24px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #9b8ea8; margin-bottom: 6px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.85; }
+  .extend-wrap { margin-top: 24px; padding: 18px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .extend-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #e8a87c; margin-bottom: 8px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.85; }
+
+  /* Tomorrow */
+  .tmr-wrap { padding: 20px 24px 24px; border-top: 1px solid #f2f0ec; }
+  .tmr-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { padding: 14px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .tmr-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #bbb; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; line-height: 1.4; }
+  .tmr-desc { font-size: 11px; color: #888; line-height: 1.6; }
+
+  /* Footer */
+  .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ece9e3; }
+  .footer-left { font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
+  .footer-right { font-size: 11px; color: #bbb; }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px 52px; }
+    .header-title { font-size: 22px; }
+    .word-en { font-size: 30px; }
+    .word-top { padding: 20px 18px 16px; }
+    .word-quote-wrap { padding: 16px 18px; }
+    .word-recall-wrap { padding: 16px 18px; }
+    .word-recall-item { grid-template-columns: 48px 1fr auto; gap: 8px; }
+    .word-recall-date { display: none; }
+    .book-header { padding: 20px 18px 16px; }
+    .book-body { padding: 20px 18px; }
+    .book-title { font-size: 18px; }
+    .tmr-grid { grid-template-columns: 1fr; gap: 10px; }
+    .news-title { font-size: 14px; }
+    .news-body { font-size: 12px; }
+    .footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="container">
+
+  <div class="header">
+    <div class="header-label">DAILY ZHUDU · 第 8 期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">2026年5月22日 · 周五 · 战略不是目标,是一套解决难题的连贯行动</div>
+  </div>
+
+  <!-- 板块一:AI 今日要闻 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-news">📡</div>
+      <div class="section-title">AI 今日要闻</div>
+      <div class="section-sub">2026.05.22</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-model">大模型动态</div>
+      <div class="news-title">Meta发布Llama 5,开源模型首次在推理任务上超越GPT-4</div>
+      <div class="news-body">Meta发布Llama 5系列模型,其中Llama 5-405B在复杂推理任务上首次超越GPT-4,且完全开源。扎克伯格宣布,Meta将投入超过600亿美元用于AI基础设施建设,目标是让开源AI成为行业标准。对企业HR而言,这意味着"自建AI系统"的成本和门槛再次大幅降低——中小企业也能用开源模型搭建内部的招聘、培训、绩效分析系统,而不必依赖昂贵的商业API。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-global">全球动态</div>
+      <div class="news-title">联合国发布《AI劳动力影响报告》,未来5年30%岗位将被重构</div>
+      <div class="news-body">联合国国际劳工组织发布《2026年AI劳动力影响报告》,预测未来5年全球30%的岗位将因AI而被重构——不是消失,而是工作内容和技能要求发生根本性变化。报告特别指出,HR、财务、法务等"知识密集型支持岗位"是重构的重点领域。对HR从业者而言,这不是危机预警,而是转型窗口:那些能用AI放大自己能力的HR,会成为组织的战略伙伴;那些被AI替代的,是那些只会执行流程的HR。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-bigco">国内大厂</div>
+      <div class="news-title">腾讯推出"AI组织诊断系统",已服务超500家企业</div>
+      <div class="news-body">腾讯云推出"AI组织诊断系统",通过分析企业的组织架构、沟通网络、项目协作数据,自动识别组织健康度问题——比如信息孤岛、决策瓶颈、人才错配等。产品上线3个月,已服务超500家企业,平均帮助企业发现7-12个"人类管理者看不见"的组织问题。这个产品的核心价值不是"监控员工",而是"看见系统"——把组织当成一个复杂系统,用数据找到那些隐藏的结构性问题。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-biz">企业落地</div>
+      <div class="news-title">某制造业巨头用AI重构培训体系,人均学习时长增加40%</div>
+      <div class="news-body">一家年营收超千亿的制造业企业用AI重构了传统的培训体系,核心逻辑是"千人千面的学习路径"。系统会根据员工的岗位、技能水平、学习习惯、职业目标,自动推荐最适合的课程和学习节奏。实施半年后,员工人均学习时长从每月2.3小时增加到3.2小时,技能认证通过率提升28%。这个案例的启示是:AI不是用来"强制"员工学习的,而是用来"激发"员工学习的——当学习内容和个人目标高度相关时,人会主动学。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-hz">杭州动态</div>
+      <div class="news-title">杭州发布"AI人才地图",全市AI从业者突破15万</div>
+      <div class="news-body">杭州市经信局发布《2026年杭州AI人才地图》,数据显示全市AI从业者已突破15万人,其中算法工程师、AI产品经理、AI应用开发者占比最高。地图还显示,杭州AI人才的平均年龄为29.8岁,本科及以上学历占比92%,平均年薪38万元。对杭州本地HR而言,这份地图不仅是招聘的参考,更是一个信号:杭州正在成为中国AI人才密度最高的城市之一,不懂AI的HR,在这个城市的竞争力会越来越弱。</div>
+    </div>
+  </div>
+
+  <!-- 板块二:每日一词 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-word">📖</div>
+      <div class="section-title">每日一词</div>
+      <div class="section-sub">1新 · 4回顾</div>
+    </div>
+
+    <div class="word-top">
+      <div class="word-new-label">TODAY'S WORD</div>
+      <div class="word-en">Leverage</div>
+      <div class="word-phonetic-row">
+        <span class="word-phonetic">/ˈliːvərɪdʒ/</span>
+        <button class="word-play" onclick="new Audio('https://dict.youdao.com/dictvoice?audio=leverage&type=2').play()">▶ 发音</button>
+      </div>
+      <div class="word-zh">
+        <strong>杠杆;借力放大</strong><br>
+        用最小的资源撬动最大的结果。在战略思维中,指找到那个"四两拨千斤"的关键点,集中力量突破,从而带动整体局面的改变。<br>
+        <small>常见搭配:leverage resources(借力资源) / strategic leverage(战略杠杆) / leverage point(杠杆点)</small>
+      </div>
+    </div>
+
+    <div class="word-quote-wrap">
+      <div class="word-quote">"Good strategy works by focusing energy and resources on one, or a very few, pivotal objectives whose accomplishment will lead to a cascade of favorable outcomes."</div>
+      <div class="word-quote-author">— Richard Rumelt,《好战略,坏战略》</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="recall-label">RECALL · 近期词汇回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-21</div>
+        <div>
+          <div class="recall-word">Context</div>
+          <div class="recall-zh">情境;背景;上下文</div>
+        </div>
+        <div class="recall-hint">理解决策所需的周边信息和环境</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-20</div>
+        <div>
+          <div class="recall-word">Autonomy</div>
+          <div class="recall-zh">自主权;自治</div>
+        </div>
+        <div class="recall-hint">对工作方式和目标的掌控能力</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-19</div>
+        <div>
+          <div class="recall-word">Contrarian</div>
+          <div class="recall-zh">逆向思维者;反共识者</div>
+        </div>
+        <div class="recall-hint">不随大流,主动寻找被忽视的真相</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-18</div>
+        <div>
+          <div class="recall-word">Accountability</div>
+          <div class="recall-zh">责任担当;可问责性</div>
+        </div>
+        <div class="recall-hint">为结果负责,不推诿</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三:今日书摘 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-book">📚</div>
+      <div class="section-title">今日书摘</div>
+      <div class="section-sub">理查德·鲁梅尔特</div>
+    </div>
+
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《好战略,坏战略》</div>
+      <div class="book-core">好战略不是目标清单,不是愿景宣言,而是一套诊断问题、找到杠杆点、集中力量突破的连贯行动。坏战略的特征是:把目标当战略,把口号当方法。</div>
+    </div>
+
+    <div class="book-body">
+      <div class="insight">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">好战略的核心是"杠杆"</div>
+        <div class="insight-body">鲁梅尔特最核心的观点:好战略不是"我们要做什么",而是"我们要集中力量在哪里突破"。他用一个公式概括好战略的结构:诊断(找到核心问题)→指导方针(确定突破方向)→连贯行动(集中资源执行)。大多数公司的战略失败,不是因为目标不够宏大,而是因为资源分散——想做的事太多,每件事都做不透。真正的战略是做减法:找到那个"如果突破了,其他问题会自然解决"的杠杆点,然后all in。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">坏战略的四大特征</div>
+        <div class="insight-body">鲁梅尔特总结了坏战略的四大特征:1)空洞的口号(比如"成为行业领导者");2)把目标当战略(比如"营收增长30%");3)回避难题(不敢直面真正的挑战);4)战略目标互相矛盾(既要降本又要提质,既要创新又要稳定)。他说,坏战略的本质是"不愿做选择"——因为做选择意味着放弃某些东西,而放弃是痛苦的。但战略的本质就是选择:选择做什么,更重要的是选择不做什么。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">战略的起点是诊断,不是目标</div>
+        <div class="insight-body">鲁梅尔特强调,好战略的第一步不是设定目标,而是诊断问题——找到那个"如果不解决,其他努力都白费"的核心障碍。他举了一个经典案例:沃尔玛的战略不是"成为最大的零售商",而是"用物流和信息系统降低成本,然后用低价占领小城镇市场"。这个战略的起点是诊断:大型零售商都在争夺大城市,小城镇被忽视了;而小城镇的消费者对价格极度敏感。找到这个诊断,战略就清晰了。</div>
+      </div>
+
+      <div class="extend-wrap">
+        <div class="extend-label">IVAN · 延伸思考</div>
+        <div class="extend-body">你现在面对的去留问题,本质上是一个战略问题:你的核心目标是"35岁前有自己的公司",那你现在的"战略"是什么?如果答案是"先在这里积累经验和资源",那这是一个好战略吗?鲁梅尔特会问你:你的核心障碍是什么?是缺钱、缺人、缺方向,还是缺勇气?找到这个诊断,你的战略才会清晰。如果核心障碍是"还没想清楚要做什么",那留下来继续观察是对的;如果核心障碍是"想清楚了但不敢跳",那留下来只是在拖延。战略的本质是选择,而选择的前提是诚实地面对问题。</div>
+      </div>
+    </div>
+
+    <div class="tmr-wrap">
+      <div class="tmr-label">TOMORROW'S READING LIST · 三选一</div>
+      <div class="tmr-grid">
+        <div class="tmr-card">
+          <div class="tmr-tag">创业方法</div>
+          <div class="tmr-title">《精益创业》</div>
+          <div class="tmr-desc">埃里克·莱斯。用最小可行产品快速验证假设,在资源耗尽前找到真正的市场需求。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">决策科学</div>
+          <div class="tmr-title">《思考,快与慢》</div>
+          <div class="tmr-desc">丹尼尔·卡尼曼。诺奖得主揭示人类决策的两套系统,以及我们如何被直觉欺骗。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">个人战略</div>
+          <div class="tmr-title">《你的降落伞是什么颜色》</div>
+          <div class="tmr-desc">理查德·鲍利斯。职业转型的经典指南,帮你找到真正适合自己的方向。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">每日铸读 · 2026.05.22 · 星期五</div>
+    <div class="footer-right">— Ivan 的分身</div>
+  </div>
+
+</div>
+</body>
+</html>
