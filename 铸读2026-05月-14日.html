@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日铸读 · 2026年5月14日</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: #f8f8f6;
+    color: #2c2c2c;
+  }
+
+  .top-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #c9a96e 0%, #e8c99a 30%, #a8c4b8 60%, #7ba7bc 80%, #c9a96e 100%);
+  }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 52px 36px 72px; }
+
+  .header { margin-bottom: 52px; }
+  .header-eyebrow { font-size: 11px; letter-spacing: 4px; color: #c9a96e; text-transform: uppercase; margin-bottom: 10px; }
+  .header-title { font-size: 30px; font-weight: 300; color: #1a1a1a; letter-spacing: 0.5px; }
+  .header-title strong { font-weight: 700; }
+  .header-meta { margin-top: 10px; font-size: 13px; color: #bbb; letter-spacing: 1px; }
+  .header-rule { margin-top: 20px; height: 1px; background: linear-gradient(90deg, #e0d4bc, #d0e0d8, transparent); }
+
+  .section { margin-bottom: 56px; }
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+  .section-tag { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; color: #fff; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+  .tag-news { background: #2c2c2c; }
+  .tag-word { background: #a8c4b8; }
+  .tag-book { background: #7ba7bc; }
+  .section-num { font-size: 11px; color: #ddd; font-weight: 600; letter-spacing: 1px; }
+
+  /* 新闻 */
+  .news-item { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid #eeece8; align-items: flex-start; }
+  .news-item:last-child { border-bottom: none; }
+  .news-index { font-size: 10px; font-weight: 800; color: #c9a96e; letter-spacing: 1px; padding-top: 3px; }
+  .news-cat { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #fff; padding: 2px 7px; border-radius: 3px; display: inline-block; margin-bottom: 6px; }
+  .cat-model { background: #7ba7bc; }
+  .cat-global { background: #9b8ea8; }
+  .cat-cn { background: #c9a96e; }
+  .cat-case { background: #a8c4b8; color: #2c2c2c !important; }
+  .cat-hangzhou { background: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 600; color: #1a1a1a; line-height: 1.5; margin-bottom: 5px; }
+  .news-body { font-size: 13px; color: #888; line-height: 1.75; }
+
+  /* 单词 */
+  .word-wrap { background: #fff; border-radius: 14px; border: 1px solid #eeece8; overflow: hidden; }
+  .word-top { padding: 28px 32px 22px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 42px; font-weight: 800; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .word-phonetic { font-size: 14px; color: #a8c4b8; font-family: monospace; }
+  .speak-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #f0f6f4; border: 1px solid #c8ddd8; color: #5a9a8a;
+    font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px;
+    cursor: pointer; letter-spacing: 0.5px; transition: all 0.2s;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  .speak-btn:hover { background: #a8c4b8; color: #fff; border-color: #a8c4b8; }
+  .word-zh { font-size: 14px; color: #666; line-height: 1.7; }
+  .word-zh strong { color: #1a1a1a; }
+  .word-zh small { color: #aaa; font-size: 12px; display: block; margin-top: 4px; }
+  .word-quote-wrap { padding: 22px 32px; background: #faf9f7; }
+  .quote-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #ccc; margin-bottom: 10px; }
+  .quote-en { font-size: 15px; color: #333; line-height: 1.75; font-style: italic; margin-bottom: 8px; }
+  .quote-en em { font-style: normal; color: #c9a96e; font-weight: 700; }
+  .quote-zh { font-size: 12px; color: #aaa; line-height: 1.6; }
+
+  /* 书摘 */
+  .book-wrap { background: #fff; border-radius: 14px; border: 1px solid #eeece8; overflow: hidden; }
+  .book-header { padding: 28px 32px 20px; border-bottom: 1px solid #f2f0ec; background: linear-gradient(135deg, #fdf9f3, #f5f8fb); }
+  .book-badge { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 10px; }
+  .book-title { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .book-author { font-size: 13px; color: #aaa; }
+  .book-body { padding: 28px 32px; }
+  .thesis-box { background: linear-gradient(135deg, #fef9f0, #fdf6ec); border-left: 3px solid #c9a96e; padding: 16px 20px; border-radius: 0 8px 8px 0; margin-bottom: 28px; }
+  .thesis-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #c9a96e; margin-bottom: 7px; }
+  .thesis-text { font-size: 14px; color: #444; line-height: 1.8; }
+  .points-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 16px; }
+  .point-item { display: flex; gap: 14px; margin-bottom: 22px; align-items: flex-start; }
+  .point-n { width: 22px; height: 22px; border-radius: 50%; background: #f0f0ec; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #999; flex-shrink: 0; margin-top: 2px; }
+  .point-head { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .point-body { font-size: 13.5px; color: #555; line-height: 1.85; }
+  .deep-read { background: #f7f5f2; border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; }
+  .deep-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 8px; }
+  .deep-text { font-size: 13.5px; color: #555; line-height: 1.85; }
+  .book-review { font-size: 13px; color: #aaa; font-style: italic; text-align: right; padding-top: 18px; border-top: 1px solid #f0eeea; }
+
+  /* 明日书单 */
+  .tmr-wrap { margin-top: 28px; }
+  .tmr-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #ccc; text-align: center; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { border: 1px solid #eeece8; border-radius: 10px; padding: 14px 16px; background: #faf9f7; }
+  .tmr-type { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #bbb; margin-bottom: 7px; text-transform: uppercase; }
+  .tmr-name { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 5px; line-height: 1.4; }
+  .tmr-why { font-size: 11px; color: #aaa; line-height: 1.5; }
+
+  /* 页脚 */
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eeecea; display: flex; justify-content: space-between; align-items: center; }
+  .footer-l { font-size: 12px; color: #ccc; }
+  .footer-r { font-size: 12px; color: #c9a96e; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="container">
+
+  <div class="header">
+    <div class="header-eyebrow">Daily Reading · 每日铸读</div>
+    <div class="header-title">今天，<strong>读点有用的。</strong></div>
+    <div class="header-meta">2026年5月14日 · 星期四 · 第 1 期</div>
+    <div class="header-rule"></div>
+  </div>
+
+  <!-- 板块一：AI 新闻 -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-tag tag-news">AI · 今日要闻</span>
+      <span class="section-num">01</span>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">01</div>
+      <div>
+        <span class="news-cat cat-model">大模型排名</span>
+        <div class="news-title">国产模型全面杀入第一阵营：豆包夺国产第一，DeepSeek 性价比封神</div>
+        <div class="news-body">SuperCLUE 5月榜显示全球前三仍由 Claude Opus 4.7、Gemini 3.1 Pro、GPT-5.4 把持，但豆包 Seed 2.0 以71.53分居国产第一，DeepSeek-V4-Pro 价格仅为 GPT-5.5 的1/30，成企业大批量任务首选。模型战争正从"卷参数"转向"卷成本"。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">02</div>
+      <div>
+        <span class="news-cat cat-global">全球动态</span>
+        <div class="news-title">Anthropic 推出"Dreaming"系统：Agent 开始在会话间隙自我进化</div>
+        <div class="news-body">Anthropic 宣布其 Agent 可在会话间隙回顾失败日志并自主优化逻辑，无需人工干预——迄今最接近"自我改进"的商用系统。同期全球调研揭示"AI生产悖论"：62%企业 Agent 已上线，但74%曾被迫回滚，工程师超50%时间用于安全防护而非改进功能。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">03</div>
+      <div>
+        <span class="news-cat cat-cn">国内大厂</span>
+        <div class="news-title">字节豆包开始收费，阿里AI收入破30%，腾讯混元登顶全球调用榜</div>
+        <div class="news-body">字节豆包5月4日推出付费订阅（68-500元/月），月活3.45亿；阿里AI季度收入达89.7亿，首破云收入30%；腾讯混元3.0限免期登顶 OpenRouter 全球调用量第一；百度文心5.1发布，宣称训练成本仅同规模模型的6%。国内大厂集体从"烧钱换量"转入"商业变现"。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">04</div>
+      <div>
+        <span class="news-cat cat-case">私企落地</span>
+        <div class="news-title">AI 落地私企三大范式：家居品牌转化率升71%，银行审批时间缩短70%</div>
+        <div class="news-body">2026年私企AI落地最佳实践浮现：①聚焦"高频痛点"而非全员撒网；②用RAG构建企业知识库打通ERP/CRM；③从"为Token付费"转向"为业务结果付费"。典型案例：某家居品牌AI导购转化率从17%升至29%，某银行AI重塑信贷流程审批时间缩短70%，某制造企业年节省成本超800万。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-index">05</div>
+      <div>
+        <span class="news-cat cat-hangzhou">杭州政策</span>
+        <div class="news-title">杭州出台具身智能机器人专项立法；全国首判：不得仅以"AI替代"为由裁员</div>
+        <div class="news-body">《杭州市促进具身智能机器人产业发展条例》5月1日施行，目标2027年AI终端产业规模达3000亿元。同期杭州中院作出全国首例裁定：AI技术应用不属于劳动合同法"客观重大变化"，企业须合理转岗安置员工——这对 HR 圈影响深远。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块二：每日一词 -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-tag tag-word">每日一词</span>
+      <span class="section-num">02</span>
+    </div>
+    <div class="word-wrap">
+      <div class="word-top">
+        <div class="word-en">Leverage</div>
+        <div class="word-phonetic-row">
+          <span class="word-phonetic">/ˈlevərɪdʒ/</span>
+          <button class="speak-btn" onclick="speakWord('leverage')">
+            ▶ 点击发音
+          </button>
+        </div>
+        <div class="word-zh">
+          <strong>v. / n.</strong> &nbsp;利用（优势或资源）以撬动更大效果；杠杆作用
+          <small>职场常见搭配：leverage one's experience · leverage data · leverage relationships</small>
+        </div>
+      </div>
+      <div class="word-quote-wrap">
+        <div class="quote-label">QUOTE OF THE DAY</div>
+        <div class="quote-en">"Give me a lever long enough and a fulcrum on which to place it, and I shall move the world. The wisest know how to <em>leverage</em> not just tools, but time, people, and ideas."</div>
+        <div class="quote-zh">——阿基米德·改 ｜ 给我一根足够长的杠杆和一个支点，我就能撬动整个地球。最智慧的人，懂得撬动的不只是工具，还有时间、人心与想法。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三：今日书摘 -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-tag tag-book">今日书摘</span>
+      <span class="section-num">03</span>
+    </div>
+    <div class="book-wrap">
+      <div class="book-header">
+        <div class="book-badge">BOOK OF THE DAY · 经典巨著</div>
+        <div class="book-title">《枪炮、病菌与钢铁》</div>
+        <div class="book-author">贾雷德·戴蒙德 著 · 1997年普利策奖 · 全球销量逾200万册</div>
+      </div>
+      <div class="book-body">
+
+        <div class="thesis-box">
+          <div class="thesis-label">一句话核心</div>
+          <div class="thesis-text">人类文明的贫富差距，根源不在种族或智力，而在于地理环境的偶然——谁先驯化了动植物，谁就率先启动了文明的复利滚动。</div>
+        </div>
+
+        <div class="points-title">THREE INSIGHTS · 三个值得记住的洞见</div>
+
+        <div class="point-item">
+          <div class="point-n">1</div>
+          <div class="point-content">
+            <div class="point-head">地理决定论：横向大陆赢了</div>
+            <div class="point-body">欧亚大陆横向延伸，同纬度气候相似，小麦、马匹可以在数千年里从中东传播到西欧再传到中国。反观非洲和美洲纵向分布，气候带截然不同，一种作物从热带传到温带几乎是不可能完成的任务。<br><br>这个地理偶然性，决定了谁能率先积累农业剩余，谁能先养活专职的士兵、官僚和发明家。戴蒙德给了一个让人回味的思想实验：如果把新几内亚人和欧洲人互换出生地，最终的历史格局会完全翻转。他的答案是——会的。</div>
+          </div>
+        </div>
+
+        <div class="point-item">
+          <div class="point-n">2</div>
+          <div class="point-content">
+            <div class="point-head">病菌才是最大的征服者</div>
+            <div class="point-body">1519年，科尔特斯带着600名西班牙士兵击溃了拥有数百万人口的阿兹特克帝国。枪炮固然有用，但真正的决定性武器是——天花。<br><br>欧洲人与牛、猪、鸡共同生活了数千年，在无数次瘟疫中积累了部分免疫力。而美洲原住民从未接触过这些病原体，天花、麻疹一传入，死亡率高达90%。有些村庄在欧洲人到达之前，就已经因先于他们传播的病菌而全部灭亡。<br><br>戴蒙德的结论冷酷而清醒：文明的胜负，有时在接触的瞬间就已注定，而非战场上。这让所有关于"更强壮的文明征服了更弱小的文明"的叙事，都显得过于简单。</div>
+          </div>
+        </div>
+
+        <div class="point-item">
+          <div class="point-n">3</div>
+          <div class="point-content">
+            <div class="point-head">粮食剩余是一切复杂性的母体</div>
+            <div class="point-body">驯化农业→粮食剩余→人口增加→土地竞争→战争需求→金属冶炼→国家出现→文字记录→知识积累→科技爆发。这条链条听起来简单，但戴蒙德花了整本书来证明每一个环节的因果必然性。<br><br>关键洞见在于：粮食剩余不仅是经济问题，它是"允许一部分人不种地"的条件。正是这个条件，养活了专职的铁匠、书记、将军、哲学家——也就是说，养活了文明本身。<br><br>他还提到一个冷酷的细节：全球14种适合大规模驯化的大型哺乳动物（马、牛、绵羊等），欧亚大陆独占13种，美洲只有羊驼。这不是欧洲人更聪明，是他们运气更好。</div>
+          </div>
+        </div>
+
+        <div class="deep-read">
+          <div class="deep-label">延伸思考 · 带回你的工作</div>
+          <div class="deep-text">戴蒙德的核心方法论是：<strong>拒绝用"天才论"解释成功，改用"环境与系统"来分析结果。</strong><br><br>这个思维方式放在管理上同样犀利：当你看到一个优秀的员工或成功的团队，先别急着归因于"这个人很厉害"——他所在的组织环境、资源禀赋、入场时机，可能才是真正的杠杆。反过来，当某个团队表现差，也未必是"这批人不行"，更可能是系统出了问题。<br><br>对 HRD 来说，这本书最大的价值或许在于：<strong>你设计的组织环境，就是你给团队的"地理条件"。</strong> 好的组织设计，让普通人也能做出超出自己能力的事；坏的组织设计，会让优秀的人持续内耗直到离开。</div>
+        </div>
+
+        <div class="book-review">"一书读完，你会开始怀疑所有关于成功的叙事。" ——Ivan 的分身</div>
+
+        <div class="tmr-wrap">
+          <div class="tmr-label">— 明日书单，选一本告诉我 —</div>
+          <div class="tmr-grid">
+            <div class="tmr-card">
+              <div class="tmr-type">历史巨著</div>
+              <div class="tmr-name">《人类简史》</div>
+              <div class="tmr-why">尤瓦尔·赫拉利 · 从认知革命到AI时代，重建你对"人"的定义</div>
+            </div>
+            <div class="tmr-card">
+              <div class="tmr-type">名人自传</div>
+              <div class="tmr-name">《成为》</div>
+              <div class="tmr-why">米歇尔·奥巴马 · 一个普通女孩如何在体制与偏见中找到自己</div>
+            </div>
+            <div class="tmr-card">
+              <div class="tmr-type">现代管理</div>
+              <div class="tmr-name">《联盟》</div>
+              <div class="tmr-why">里德·霍夫曼 · 重新定义雇主与员工关系，HRD 必读</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-l">每日铸读 · 2026.05.14 · 每个工作日 17:50 送达</div>
+    <div class="footer-r">— Ivan 的分身</div>
+  </div>
+
+</div>
+<script>
+function speakWord(word) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US';
+    u.rate = 0.85;
+    u.pitch = 1;
+    window.speechSynthesis.speak(u);
+  } else {
+    alert('请用 Chrome 或 Edge 打开以支持语音朗读');
+  }
+}
+</script>
+</body>
+</html>
