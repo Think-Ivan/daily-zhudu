@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铸读 2026.05.27 · 周三</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f3ef; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1a1a1a; }
+  .top-bar { height: 5px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+
+  .header { margin-bottom: 40px; }
+  .header-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #c9a96e; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+
+  .section { margin-bottom: 36px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; border-bottom: 1px solid #f2f0ec; display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .icon-news { background: #fdf3e3; }
+  .icon-word { background: #e8f4f0; }
+  .icon-book { background: #e8f0f7; }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #bbb; margin-left: auto; }
+
+  /* News */
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ef; }
+  .news-item:last-child { border-bottom: none; }
+  .news-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; }
+  .tag-model { background: #fdf3e3; color: #c9a96e; }
+  .tag-global { background: #e8f4f0; color: #6b9d8a; }
+  .tag-domestic { background: #f3e8f4; color: #9b8ea8; }
+  .tag-enterprise { background: #e8f0f7; color: #7ba7bc; }
+  .tag-hangzhou { background: #fef0e8; color: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; line-height: 1.4; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.7; }
+
+  /* Word */
+  .word-top { padding: 24px 24px 20px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 36px; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .word-phonetic { font-size: 14px; color: #999; font-style: italic; }
+  .word-play { width: 24px; height: 24px; border-radius: 50%; background: #a8c4b8; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; }
+  .word-play:hover { background: #8fb0a3; }
+  .word-zh { font-size: 15px; color: #555; margin-bottom: 6px; }
+  .word-usage { font-size: 12px; color: #999; }
+
+  .word-quote-wrap { padding: 20px 24px; background: #fafaf8; border-bottom: 1px solid #f2f0ec; }
+  .word-quote { font-size: 14px; color: #555; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #a8c4b8; }
+  .word-quote-author { font-size: 12px; color: #999; margin-top: 8px; text-align: right; }
+
+  .word-recall-wrap { padding: 20px 24px; }
+  .word-recall-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 14px; }
+  .word-recall-item { display: grid; grid-template-columns: 60px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f3ef; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-date { font-size: 11px; color: #bbb; font-weight: 700; }
+  .recall-word { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+  .recall-zh { font-size: 12px; color: #999; margin-top: 2px; }
+  .recall-hint { font-size: 11px; color: #bbb; text-align: right; }
+
+  /* Book */
+  .book-header { padding: 24px 24px 20px; border-bottom: 1px solid #f2f0ec; }
+  .book-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 8px; }
+  .book-title { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-bottom: 12px; }
+  .book-core { font-size: 13px; color: #555; line-height: 1.7; background: #fafaf8; padding: 12px 16px; border-radius: 6px; border-left: 3px solid #7ba7bc; }
+
+  .book-body { padding: 24px 24px; }
+  .insight { margin-bottom: 24px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 6px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.8; }
+
+  .extend-wrap { margin-top: 28px; padding-top: 24px; border-top: 1px solid #f2f0ec; }
+  .extend-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #e8a87c; margin-bottom: 10px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.8; background: #fef9f5; padding: 14px 18px; border-radius: 6px; border-left: 3px solid #e8a87c; }
+
+  .tmr-wrap { margin-top: 28px; padding-top: 24px; border-top: 1px solid #f2f0ec; }
+  .tmr-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #9b8ea8; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { background: #fafaf8; padding: 14px; border-radius: 8px; border: 1px solid #f2f0ec; }
+  .tmr-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #9b8ea8; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .tmr-desc { font-size: 11px; color: #999; line-height: 1.6; }
+
+  .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #e8e6e0; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left, .footer-right { font-size: 11px; color: #bbb; }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px 52px; }
+    .header-title { font-size: 22px; }
+    .word-en { font-size: 30px; }
+    .word-top { padding: 20px 18px 16px; }
+    .word-quote-wrap { padding: 16px 18px; }
+    .word-recall-wrap { padding: 16px 18px; }
+    .word-recall-item { grid-template-columns: 48px 1fr auto; gap: 8px; }
+    .word-recall-date { display: none; }
+    .book-header { padding: 20px 18px 16px; }
+    .book-body { padding: 20px 18px; }
+    .book-title { font-size: 18px; }
+    .tmr-grid { grid-template-columns: 1fr; gap: 10px; }
+    .news-title { font-size: 14px; }
+    .news-body { font-size: 12px; }
+    .footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<div class="container">
+  <div class="header">
+    <div class="header-label">DAILY ZHUDU · 第 11 期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">AI × 职场 × 思维 · 为 Ivan 定制</div>
+  </div>
+
+  <!-- 板块一:AI今日要闻 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-news">📰</div>
+      <div class="section-title">AI 今日要闻</div>
+      <div class="section-sub">5 条</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-model">大模型动态</div>
+      <div class="news-title">OpenAI 推出 GPT-4.5：推理能力提升 40%，专注复杂决策场景</div>
+      <div class="news-body">OpenAI 发布 GPT-4.5，主打"深度推理"能力，在多步骤决策、因果分析、战略规划等场景表现显著提升。这对 HR 意味着什么？未来的组织诊断、人才盘点、绩效分析，AI 不再只是"数据助手"，而是能提供"为什么这样做"的战略建议。你现在做的每一个 HR 决策，都可能被 AI 挑战：你的逻辑链条够严密吗？</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-enterprise">企业落地</div>
+      <div class="news-title">字节跳动内部推行"AI 绩效助手"：自动生成 OKR 复盘报告</div>
+      <div class="news-body">字节内部测试一款 AI 工具，员工输入季度工作记录，AI 自动生成 OKR 复盘报告、亮点提炼、改进建议。HR 部门反馈：员工自评质量提升 60%，主管复盘时间缩短 50%。这个案例说明：AI 不是替代绩效管理，而是让"写绩效"这件事从负担变成思考工具。你现在的绩效体系，能承接这种变化吗？</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-global">全球动态</div>
+      <div class="news-title">LinkedIn 发布《2026 AI 技能报告》：HR 岗位 AI 技能需求增长 320%</div>
+      <div class="news-body">LinkedIn 数据显示，过去一年 HR 岗位招聘中，明确要求"AI 工具使用能力"的职位增长 320%，尤其是招聘、培训、数据分析方向。报告指出：未来 HR 的核心竞争力不是"懂人"，而是"懂人+懂 AI"。你现在的技能栈，能匹配这个趋势吗？如果 35 岁前要有自己的公司，AI 能力可能是你最大的杠杆。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-domestic">国内大厂</div>
+      <div class="news-title">阿里云推出"AI 面试官"：支持结构化面试全流程自动化</div>
+      <div class="news-body">阿里云发布 AI 面试解决方案，支持视频面试、实时追问、能力评估、报告生成全流程。测试数据：AI 面试官在技术岗初筛准确率达 85%，面试时长缩短 40%。这对 HR 是机会还是威胁？如果初筛被 AI 替代，HR 的价值在哪里？答案可能是：从"执行面试"转向"设计面试"——定义什么是好的候选人，而不是机械地问问题。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-hangzhou">杭州动态</div>
+      <div class="news-title">杭州发布《AI+ 人力资源产业扶持政策》：最高补贴 500 万</div>
+      <div class="news-body">杭州市人社局联合科技局发布新政，支持 AI+HR 方向创业项目，涵盖智能招聘、培训、绩效、组织诊断等领域，最高补贴 500 万。政策明确：鼓励 HR 从业者转型创业，提供场地、资金、资源对接。这对你意味着什么？如果你 35 岁前要有自己的公司，现在可能是最好的窗口期——政策红利+行业需求+你的 HR 经验，三者叠加。</div>
+    </div>
+  </div>
+
+  <!-- 板块二:每日一词 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-word">💬</div>
+      <div class="section-title">每日一词</div>
+      <div class="section-sub">1 新 4 旧</div>
+    </div>
+
+    <div class="word-top">
+      <div class="word-en">Alignment</div>
+      <div class="word-phonetic-row">
+        <span class="word-phonetic">/əˈlaɪnmənt/</span>
+        <button class="word-play" onclick="new Audio('https://dict.youdao.com/dictvoice?audio=Alignment&type=2').play()">▶</button>
+      </div>
+      <div class="word-zh">对齐;一致性;校准</div>
+      <div class="word-usage">常见搭配: strategic alignment 战略对齐 / team alignment 团队共识 / alignment meeting 对齐会议</div>
+    </div>
+
+    <div class="word-quote-wrap">
+      <div class="word-quote">"The single biggest problem in communication is the illusion of it. True <em>alignment</em> requires not just talking, but ensuring everyone hears the same thing."</div>
+      <div class="word-quote-author">— George Bernard Shaw (改编)</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="word-recall-label">RECALL · 回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-26</div>
+        <div>
+          <div class="recall-word">Discovery</div>
+          <div class="recall-zh">发现;探索;验证</div>
+        </div>
+        <div class="recall-hint">在做之前先验证值不值得做</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-25</div>
+        <div>
+          <div class="recall-word">Pivot</div>
+          <div class="recall-zh">转向;调整方向</div>
+        </div>
+        <div class="recall-hint">保留核心,改变路径</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-22</div>
+        <div>
+          <div class="recall-word">Leverage</div>
+          <div class="recall-zh">杠杆;借力放大</div>
+        </div>
+        <div class="recall-hint">用最小资源撬动最大结果</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-21</div>
+        <div>
+          <div class="recall-word">Context</div>
+          <div class="recall-zh">情境;背景;上下文</div>
+        </div>
+        <div class="recall-hint">理解决策所需的周边信息和环境</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三:今日书摘 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-book">📚</div>
+      <div class="section-title">今日书摘</div>
+      <div class="section-sub">斯坦利·麦克里斯特尔</div>
+    </div>
+
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《赋能》</div>
+      <div class="book-core">传统的"指挥-控制"式管理在复杂环境中失效了。真正的赋能不是"放权"，而是建立一个"共享意识+授权执行"的系统：让每个人都能看到全局，然后信任他们做出正确决策。组织的速度不是由最快的人决定，而是由信息流动的速度决定。</div>
+    </div>
+
+    <div class="book-body">
+      <div class="insight">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">复杂环境中，"效率"不如"适应性"重要</div>
+        <div class="insight-body">麦克里斯特尔在伊拉克指挥反恐战争时发现：传统军队追求"效率"——标准化流程、层级审批、精确计划，但面对基地组织这种分散、灵活、快速响应的敌人时，效率反而成了劣势。基地组织没有总部，每个小组自主决策，速度极快。他意识到：在复杂、不确定的环境中，"适应性"比"效率"更重要。组织需要的不是"把计划执行得完美"，而是"快速感知变化、快速调整"。他把特种部队从"金字塔"改造成"网络"：每个小组都能看到全局情报，自主决策，不需要层层请示。结果：决策速度提升 10 倍，行动成功率大幅提高。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">赋能的前提是"共享意识"，而非"放权"</div>
+        <div class="insight-body">很多管理者误解"赋能"：以为就是"放权"——把决策权下放给员工。但麦克里斯特尔强调：赋能的前提是"共享意识"(shared consciousness)。如果员工不了解全局，不知道其他团队在做什么，不理解战略目标，那放权只会导致混乱。他在特种部队推行"O&I 会议"(Operations & Intelligence)：每天所有部门一起开会，分享情报、行动进展、遇到的问题。一开始很多人抗拒——"我的情报为什么要给其他部门？"但麦克里斯特尔坚持：只有每个人都看到全局，才能做出符合整体利益的决策。结果：跨部门协作效率提升，决策质量提高，因为每个人都能理解"为什么这样做"。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">领导者的角色从"下命令"变成"打造系统"</div>
+        <div class="insight-body">麦克里斯特尔说，传统领导者的工作是"做决策"——收集信息、分析、下命令。但在复杂环境中，这种模式太慢了。他把自己的角色重新定义为"打造系统"：不是告诉团队"做什么"，而是确保团队有能力自己做出正确决策。具体怎么做？1)建立信息透明机制(O&I 会议)，让每个人都能看到全局；2)培养"赋能型领导者"(empowered leaders)，他们不是等命令，而是主动发现问题、协调资源、推动解决；3)建立信任文化，允许试错，快速复盘。他说："我的工作不是做 1000 个决策，而是打造一个能让 1000 个人做出正确决策的系统。"</div>
+      </div>
+
+      <div class="extend-wrap">
+        <div class="extend-label">IVAN · 延伸思考</div>
+        <div class="extend-body">你现在做 HR，本质上也是在"打造系统"——招聘体系、绩效体系、培训体系。但你有没有想过：你的体系是"指挥-控制"型的，还是"赋能"型的？举个例子：你的绩效体系是"HR 定目标→员工执行→HR 考核"，还是"业务部门自己定目标→HR 提供工具和方法→业务部门自己复盘"？前者是"控制"，后者是"赋能"。麦克里斯特尔会问你：你的 HR 体系有没有建立"共享意识"？业务部门知道其他部门在做什么吗？他们理解公司的战略目标吗？如果不知道，那你的体系再完美，也只是"效率陷阱"。如果你 35 岁前要有自己的公司，那从现在开始，你需要练习的不是"怎么把 HR 做得更好"，而是"怎么打造一个赋能型组织"——那个组织可能不在 HR 领域，但它的底层逻辑是一样的：共享意识+授权执行。</div>
+      </div>
+    </div>
+
+    <div class="tmr-wrap">
+      <div class="tmr-label">TOMORROW'S READING LIST · 三选一</div>
+      <div class="tmr-grid">
+        <div class="tmr-card">
+          <div class="tmr-tag">组织设计</div>
+          <div class="tmr-title">《重新定义团队》</div>
+          <div class="tmr-desc">谷歌重新思考团队协作的本质，心理安全感如何影响团队效能。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">决策科学</div>
+          <div class="tmr-title">《思考，快与慢》</div>
+          <div class="tmr-desc">丹尼尔·卡尼曼。理解人类决策的两套系统，以及如何避免认知偏差。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">系统思维</div>
+          <div class="tmr-title">《第五项修炼》</div>
+          <div class="tmr-desc">彼得·圣吉。学习型组织的五项核心能力，系统思考如何改变组织。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">每日铸读 · 2026.05.27 · 星期三</div>
+    <div class="footer-right">— Ivan 的分身</div>
+  </div>
+
+</div>
+</body>
+</html>
