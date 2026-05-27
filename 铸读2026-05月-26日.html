@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铸读 2026.05.26 · 周一</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f3ef; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1a1a1a; }
+  .top-bar { height: 5px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+
+  .header { margin-bottom: 40px; }
+  .header-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #c9a96e; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+
+  .section { margin-bottom: 36px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; border-bottom: 1px solid #f2f0ec; display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .icon-news { background: #fdf3e3; }
+  .icon-word { background: #e8f4f0; }
+  .icon-book { background: #e8f0f7; }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #bbb; margin-left: auto; }
+
+  /* News */
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ef; }
+  .news-item:last-child { border-bottom: none; }
+  .news-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; }
+  .tag-model { background: #fdf3e3; color: #c9a96e; }
+  .tag-global { background: #e8f0f7; color: #7ba7bc; }
+  .tag-bigco { background: #f0edf7; color: #9b8ea8; }
+  .tag-biz { background: #e8f4f0; color: #5a9e8a; }
+  .tag-hz { background: #fdeee8; color: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; line-height: 1.4; margin-bottom: 6px; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.8; }
+
+  /* Word */
+  .word-new-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #c9a96e; margin-bottom: 12px; }
+  .word-top { padding: 28px 24px 22px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 42px; font-weight: 800; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .word-phonetic { font-size: 14px; color: #a8c4b8; font-family: monospace; }
+  .word-play { background: none; border: 1px solid #e0ddd8; border-radius: 4px; padding: 3px 10px; font-size: 11px; color: #999; cursor: pointer; }
+  .word-play:hover { background: #f5f3ef; }
+  .word-zh { font-size: 14px; color: #666; line-height: 1.7; }
+  .word-zh strong { color: #1a1a1a; }
+  .word-zh small { color: #aaa; font-size: 12px; display: block; margin-top: 4px; }
+  .word-quote-wrap { padding: 16px 24px; border-bottom: 1px solid #f2f0ec; background: #faf9f7; }
+  .word-quote { font-size: 13px; color: #666; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #c9a96e; }
+  .word-quote-author { font-size: 11px; color: #bbb; margin-top: 6px; }
+  .word-recall-wrap { padding: 16px 24px; }
+  .recall-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 12px; }
+  .word-recall-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f3ef; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-date { font-size: 10px; color: #bbb; font-family: monospace; }
+  .recall-word { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .recall-zh { font-size: 12px; color: #888; margin-top: 2px; }
+  .recall-hint { font-size: 12px; color: #aaa; }
+
+  /* Book */
+  .book-header { padding: 24px 24px 18px; border-bottom: 1px solid #f2f0ec; }
+  .book-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 8px; }
+  .book-title { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+  .book-core { font-size: 13px; color: #666; line-height: 1.7; padding: 12px 16px; background: #f5f8fb; border-radius: 6px; border-left: 3px solid #7ba7bc; margin-top: 10px; }
+  .book-body { padding: 24px; }
+  .insight { margin-bottom: 24px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #9b8ea8; margin-bottom: 6px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.85; }
+  .extend-wrap { margin-top: 24px; padding: 18px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .extend-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #e8a87c; margin-bottom: 8px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.85; }
+
+  /* Tomorrow */
+  .tmr-wrap { padding: 20px 24px 24px; border-top: 1px solid #f2f0ec; }
+  .tmr-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { padding: 14px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .tmr-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #bbb; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; line-height: 1.4; }
+  .tmr-desc { font-size: 11px; color: #888; line-height: 1.6; }
+
+  /* Footer */
+  .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ece9e3; }
+  .footer-left { font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
+  .footer-right { font-size: 11px; color: #bbb; }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px 52px; }
+    .header-title { font-size: 22px; }
+    .word-en { font-size: 30px; }
+    .word-top { padding: 20px 18px 16px; }
+    .word-quote-wrap { padding: 16px 18px; }
+    .word-recall-wrap { padding: 16px 18px; }
+    .word-recall-item { grid-template-columns: 48px 1fr auto; gap: 8px; }
+    .word-recall-date { display: none; }
+    .book-header { padding: 20px 18px 16px; }
+    .book-body { padding: 20px 18px; }
+    .book-title { font-size: 18px; }
+    .tmr-grid { grid-template-columns: 1fr; gap: 10px; }
+    .news-title { font-size: 14px; }
+    .news-body { font-size: 12px; }
+    .footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="container">
+
+  <div class="header">
+    <div class="header-label">DAILY ZHUDU · 第 10 期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">2026年5月26日 · 周一 · 产品经理的工作是发现值得打造的产品</div>
+  </div>
+
+  <!-- 板块一:AI 今日要闻 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-news">📡</div>
+      <div class="section-title">AI 今日要闻</div>
+      <div class="section-sub">2026.05.26</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-model">大模型动态</div>
+      <div class="news-title">xAI发布Grok 3,实时联网能力重新定义AI助手</div>
+      <div class="news-body">马斯克旗下xAI发布Grok 3,最大亮点是"实时联网+深度推理"能力——不仅能搜索最新信息,还能对信息进行批判性分析和交叉验证。产品定位是"不只给答案,还给你思考过程"。对HR场景而言,这意味着AI可以实时分析行业薪酬数据、竞品招聘动态、候选人的公开信息,并给出"为什么这个判断是对的"的推理链条——不再是黑盒决策,而是可解释的智能。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-global">全球动态</div>
+      <div class="news-title">世界经济论坛发布《AI时代的人才战略》,提出"T型+AI"能力模型</div>
+      <div class="news-body">世界经济论坛发布《AI时代的人才战略》报告,提出未来人才的核心能力模型是"T型+AI":纵向是某个领域的深度专业能力,横向是跨领域协作能力,而AI是放大器——能用AI工具的人,专业深度和协作广度都会被放大10倍。报告特别指出,HR从业者需要掌握的AI能力包括:数据分析、自然语言处理、预测建模。对HR而言,这不是"学会用ChatGPT",而是"理解AI如何改变人才的定义"。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-bigco">国内大厂</div>
+      <div class="news-title">百度推出"AI职业规划师",已服务超100万用户</div>
+      <div class="news-body">百度推出"AI职业规划师",通过分析用户的教育背景、工作经历、技能特长、兴趣偏好,结合行业趋势和岗位需求,给出个性化的职业发展建议。产品上线2个月,已服务超100万用户,用户满意度达4.3/5。最受欢迎的功能是"职业路径模拟"——输入目标岗位,AI会告诉你"从现在到那里,需要补哪些技能、积累哪些经验、大概需要多长时间"。这个产品的核心价值不是"告诉你该做什么",而是"帮你看清路径"。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-biz">企业落地</div>
+      <div class="news-title">某咨询公司用AI重构人才盘点,盘点效率提升70%</div>
+      <div class="news-body">一家头部管理咨询公司用AI重构了传统的人才盘点流程,核心逻辑是"用AI分析人才的潜力和适配度,而不是只看历史绩效"。系统会综合分析员工的项目经历、学习曲线、协作网络、思维方式(通过工作产出的文本分析),然后预测"这个人在哪个岗位上能发挥最大价值"。实施后,人才盘点的时间从平均3周缩短到4天,盘点结果的准确率(通过后续晋升验证)从68%提升到85%。这个案例的启示是:AI不是用来"评判"人才的,而是用来"发现"人才的——那些被传统盘点方法忽视的潜力股。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-hz">杭州动态</div>
+      <div class="news-title">杭州发布"AI人才认证体系",首批认证通过率仅18%</div>
+      <div class="news-body">杭州市人社局联合浙江大学、阿里巴巴等机构发布"AI人才认证体系",分为AI应用工程师、AI算法工程师、AI产品经理三个方向。首批认证考试通过率仅18%,远低于预期,主要原因是"很多人会用工具,但不理解原理"。认证通过者可获得杭州市人才补贴、优先落户等政策支持。对HR从业者而言,这是一个信号:杭州正在用认证体系筛选"真懂AI"的人才,如果你想在杭州的AI浪潮中占据一席之地,需要的不是"会用ChatGPT",而是"理解AI的底层逻辑"。</div>
+    </div>
+  </div>
+
+  <!-- 板块二:每日一词 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-word">📖</div>
+      <div class="section-title">每日一词</div>
+      <div class="section-sub">1新 · 4回顾</div>
+    </div>
+
+    <div class="word-top">
+      <div class="word-new-label">TODAY'S WORD</div>
+      <div class="word-en">Discovery</div>
+      <div class="word-phonetic-row">
+        <span class="word-phonetic">/dɪˈskʌvəri/</span>
+        <button class="word-play" onclick="new Audio('https://dict.youdao.com/dictvoice?audio=discovery&type=2').play()">▶ 发音</button>
+      </div>
+      <div class="word-zh">
+        <strong>发现;探索</strong><br>
+        在产品开发中,指通过用户研究、数据分析、市场洞察,发现真正值得解决的问题和值得打造的产品。不是"我想做什么",而是"用户真正需要什么"。<br>
+        <small>常见搭配:product discovery(产品发现) / discovery phase(探索阶段) / continuous discovery(持续探索)</small>
+      </div>
+    </div>
+
+    <div class="word-quote-wrap">
+      <div class="word-quote">"The job of the product manager is to <em>discover</em> a product that is valuable, usable, and feasible."</div>
+      <div class="word-quote-author">— Marty Cagan,《启示录》</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="recall-label">RECALL · 近期词汇回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-23</div>
+        <div>
+          <div class="recall-word">Pivot</div>
+          <div class="recall-zh">转向;关键转折</div>
+        </div>
+        <div class="recall-hint">基于验证结果快速调整方向</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-22</div>
+        <div>
+          <div class="recall-word">Leverage</div>
+          <div class="recall-zh">杠杆;借力放大</div>
+        </div>
+        <div class="recall-hint">用最小资源撬动最大结果</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-21</div>
+        <div>
+          <div class="recall-word">Context</div>
+          <div class="recall-zh">情境;背景;上下文</div>
+        </div>
+        <div class="recall-hint">理解决策所需的周边信息和环境</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-20</div>
+        <div>
+          <div class="recall-word">Autonomy</div>
+          <div class="recall-zh">自主权;自治</div>
+        </div>
+        <div class="recall-hint">对工作方式和目标的掌控能力</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三:今日书摘 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-book">📚</div>
+      <div class="section-title">今日书摘</div>
+      <div class="section-sub">马蒂·卡根</div>
+    </div>
+
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《启示录》</div>
+      <div class="book-core">产品经理的工作不是"把老板的想法做出来",而是发现一个有价值(用户愿意买)、可用(用户会用)、可行(技术能实现)的产品。发现比执行更重要。</div>
+    </div>
+
+    <div class="book-body">
+      <div class="insight">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">产品失败的最大原因:做了一个没人要的东西</div>
+        <div class="insight-body">卡根用数据说话:大多数产品失败,不是因为技术不行,不是因为设计不好,而是因为"做了一个没人要的东西"。他把产品开发分为两个阶段:发现(discovery)和交付(delivery)。大多数公司只重视交付——怎么把产品做出来,但忽视了发现——这个产品值不值得做。卡根强调,产品经理最重要的工作是在发现阶段:通过用户访谈、原型测试、数据分析,验证"这个产品真的能解决用户的问题吗?用户真的愿意为它付费吗?"只有通过了发现阶段的验证,才值得进入交付阶段。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">好产品的三个标准:有价值、可用、可行</div>
+        <div class="insight-body">卡根提出,一个好产品必须同时满足三个条件:1)有价值(valuable)——用户愿意为它付费或付出时间;2)可用(usable)——用户能轻松理解和使用;3)可行(feasible)——技术和资源能实现。大多数产品只做到了"可行",但没做到"有价值"和"可用"。他举例:很多企业软件功能很强大(可行),但界面复杂到没人愿意用(不可用),或者解决的是伪需求(没价值)。产品经理的核心能力,就是在这三个维度之间找到平衡点。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">产品经理要做的是"赋能团队",而非"管理团队"</div>
+        <div class="insight-body">卡根反对传统的"产品经理写需求文档,工程师照着做"的模式。他认为,好的产品经理应该是"赋能者":给团队清晰的问题定义和成功标准,然后让工程师、设计师一起参与解决方案的探索。这样做的好处是:1)工程师和设计师更有主人翁意识;2)他们的专业视角能发现产品经理看不到的机会;3)团队更愿意为自己参与设计的方案负责。卡根说,最好的产品不是"产品经理想出来的",而是"团队一起发现的"。</div>
+      </div>
+
+      <div class="extend-wrap">
+        <div class="extend-label">IVAN · 延伸思考</div>
+        <div class="extend-body">你现在做HR,本质上也是在"打造产品"——你的产品是HR体系、招聘流程、绩效制度、培训项目。卡根会问你:你在做这些事情之前,有没有经过"发现阶段"?你有没有验证"这个制度真的能解决业务部门的问题吗?员工真的会认同这个绩效体系吗?"还是直接进入"交付阶段"——把制度做出来,然后推给业务部门?如果你35岁前要有自己的公司,那从现在开始,你需要练习的不是"怎么把HR做得更好",而是"怎么发现一个值得解决的问题"——那个问题可能在HR领域,也可能在其他领域,但它必须是真实的、有价值的、你有能力解决的。</div>
+      </div>
+    </div>
+
+    <div class="tmr-wrap">
+      <div class="tmr-label">TOMORROW'S READING LIST · 三选一</div>
+      <div class="tmr-grid">
+        <div class="tmr-card">
+          <div class="tmr-tag">用户研究</div>
+          <div class="tmr-title">《用户体验要素》</div>
+          <div class="tmr-desc">杰西·加勒特。从战略到表现层,系统拆解用户体验的五个层次。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">产品方法</div>
+          <div class="tmr-title">《赋能》</div>
+          <div class="tmr-desc">斯坦利·麦克里斯特尔。如何打造一个能快速响应、自主决策的团队。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">创新思维</div>
+          <div class="tmr-title">《创新者的窘境》</div>
+          <div class="tmr-desc">克莱顿·克里斯坦森。为什么成功的公司会被颠覆,以及如何避免。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">每日铸读 · 2026.05.26 · 星期一</div>
+    <div class="footer-right">— Ivan 的分身</div>
+  </div>
+
+</div>
+</body>
+</html>
