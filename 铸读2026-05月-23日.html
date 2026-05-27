@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铸读 2026.05.23 · 周六</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f3ef; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1a1a1a; }
+  .top-bar { height: 5px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+
+  .header { margin-bottom: 40px; }
+  .header-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #c9a96e; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+
+  .section { margin-bottom: 36px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; border-bottom: 1px solid #f2f0ec; display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .icon-news { background: #fdf3e3; }
+  .icon-word { background: #e8f4f0; }
+  .icon-book { background: #e8f0f7; }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #bbb; margin-left: auto; }
+
+  /* News */
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ef; }
+  .news-item:last-child { border-bottom: none; }
+  .news-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; }
+  .tag-model { background: #fdf3e3; color: #c9a96e; }
+  .tag-global { background: #e8f0f7; color: #7ba7bc; }
+  .tag-bigco { background: #f0edf7; color: #9b8ea8; }
+  .tag-biz { background: #e8f4f0; color: #5a9e8a; }
+  .tag-hz { background: #fdeee8; color: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; line-height: 1.4; margin-bottom: 6px; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.8; }
+
+  /* Word */
+  .word-new-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #c9a96e; margin-bottom: 12px; }
+  .word-top { padding: 28px 24px 22px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 42px; font-weight: 800; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .word-phonetic { font-size: 14px; color: #a8c4b8; font-family: monospace; }
+  .word-play { background: none; border: 1px solid #e0ddd8; border-radius: 4px; padding: 3px 10px; font-size: 11px; color: #999; cursor: pointer; }
+  .word-play:hover { background: #f5f3ef; }
+  .word-zh { font-size: 14px; color: #666; line-height: 1.7; }
+  .word-zh strong { color: #1a1a1a; }
+  .word-zh small { color: #aaa; font-size: 12px; display: block; margin-top: 4px; }
+  .word-quote-wrap { padding: 16px 24px; border-bottom: 1px solid #f2f0ec; background: #faf9f7; }
+  .word-quote { font-size: 13px; color: #666; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #c9a96e; }
+  .word-quote-author { font-size: 11px; color: #bbb; margin-top: 6px; }
+  .word-recall-wrap { padding: 16px 24px; }
+  .recall-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 12px; }
+  .word-recall-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f3ef; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-date { font-size: 10px; color: #bbb; font-family: monospace; }
+  .recall-word { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .recall-zh { font-size: 12px; color: #888; margin-top: 2px; }
+  .recall-hint { font-size: 12px; color: #aaa; }
+
+  /* Book */
+  .book-header { padding: 24px 24px 18px; border-bottom: 1px solid #f2f0ec; }
+  .book-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 8px; }
+  .book-title { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+  .book-core { font-size: 13px; color: #666; line-height: 1.7; padding: 12px 16px; background: #f5f8fb; border-radius: 6px; border-left: 3px solid #7ba7bc; margin-top: 10px; }
+  .book-body { padding: 24px; }
+  .insight { margin-bottom: 24px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #9b8ea8; margin-bottom: 6px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.85; }
+  .extend-wrap { margin-top: 24px; padding: 18px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .extend-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #e8a87c; margin-bottom: 8px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.85; }
+
+  /* Tomorrow */
+  .tmr-wrap { padding: 20px 24px 24px; border-top: 1px solid #f2f0ec; }
+  .tmr-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { padding: 14px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .tmr-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #bbb; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; line-height: 1.4; }
+  .tmr-desc { font-size: 11px; color: #888; line-height: 1.6; }
+
+  /* Footer */
+  .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ece9e3; }
+  .footer-left { font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
+  .footer-right { font-size: 11px; color: #bbb; }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px 52px; }
+    .header-title { font-size: 22px; }
+    .word-en { font-size: 30px; }
+    .word-top { padding: 20px 18px 16px; }
+    .word-quote-wrap { padding: 16px 18px; }
+    .word-recall-wrap { padding: 16px 18px; }
+    .word-recall-item { grid-template-columns: 48px 1fr auto; gap: 8px; }
+    .word-recall-date { display: none; }
+    .book-header { padding: 20px 18px 16px; }
+    .book-body { padding: 20px 18px; }
+    .book-title { font-size: 18px; }
+    .tmr-grid { grid-template-columns: 1fr; gap: 10px; }
+    .news-title { font-size: 14px; }
+    .news-body { font-size: 12px; }
+    .footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="container">
+
+  <div class="header">
+    <div class="header-label">DAILY ZHUDU · 第 9 期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">2026年5月23日 · 周六 · 不要等完美,先验证假设</div>
+  </div>
+
+  <!-- 板块一:AI 今日要闻 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-news">📡</div>
+      <div class="section-title">AI 今日要闻</div>
+      <div class="section-sub">2026.05.23</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-model">大模型动态</div>
+      <div class="news-title">Google发布Gemini 2.0 Ultra,多模态能力全面超越GPT-5</div>
+      <div class="news-body">Google发布Gemini 2.0 Ultra,在图像理解、视频分析、代码生成等多模态任务上全面超越GPT-5。最引人注目的是其"原生多模态"架构——不是先处理文本再处理图像,而是同时理解所有模态的信息。对HR场景而言,这意味着AI可以同时分析候选人的简历文本、面试视频、作品集图片,给出更全面的评估——不再是"先看简历再看视频",而是"整体理解这个人"。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-global">全球动态</div>
+      <div class="news-title">全球AI创业公司融资总额突破2000亿美元,HR科技占比12%</div>
+      <div class="news-body">据Crunchbase数据,2026年前5个月全球AI创业公司融资总额已突破2000亿美元,其中HR科技领域占比12%,仅次于医疗和金融。投资人最看好的三个方向:AI招聘(智能筛选+面试)、AI培训(个性化学习路径)、AI组织诊断(数据驱动的组织健康度分析)。对HR从业者而言,这不仅是行业趋势,更是职业机会:懂AI的HR,可以成为这些创业公司的早期员工或顾问。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-bigco">国内大厂</div>
+      <div class="news-title">字节跳动推出"AI绩效教练",员工满意度提升25%</div>
+      <div class="news-body">字节跳动内部孵化的"AI绩效教练"正式对外开放,核心功能是"像真人教练一样,帮员工理解绩效反馈并制定改进计划"。系统会分析员工的绩效数据、项目记录、同事反馈,然后用对话的方式帮员工找到"为什么没达到预期""下一步该怎么做"。内测数据显示,使用AI绩效教练的员工,对绩效体系的满意度提升25%,改进计划的执行率提升40%。这个产品的核心价值不是"评判员工",而是"帮助员工成长"。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-biz">企业落地</div>
+      <div class="news-title">某互联网公司用AI重构离职面谈,真实离职原因识别率提升60%</div>
+      <div class="news-body">一家头部互联网公司用AI重构了传统的离职面谈流程,核心逻辑是"用AI分析员工的真实离职原因,而不是听他们的官方说辞"。系统会综合分析员工的工作数据(项目参与度、沟通频率、加班时长)、社交网络(与谁互动最多)、绩效轨迹(最近半年的变化),然后推测真实的离职原因。实施半年后,HR对离职原因的判断准确率从42%提升到89%,针对性的留人措施有效率提升60%。这个案例的启示是:AI不是用来"监控"员工的,而是用来"理解"员工的——那些人类HR因为信息不对称而看不见的真相。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-hz">杭州动态</div>
+      <div class="news-title">杭州发布"AI创业扶持计划",最高补贴1000万</div>
+      <div class="news-body">杭州市科技局发布"AI创业扶持计划",对AI领域的创业项目给予最高1000万元的研发补贴和500万元的人才补贴。政策特别提出,鼓励"AI+垂直行业"的创业方向,包括AI+HR、AI+教育、AI+医疗等。对有创业想法的HR从业者而言,这是一个明确的信号:杭州正在用真金白银支持AI创业,如果你有一个"用AI解决HR痛点"的想法,现在是最好的时机。</div>
+    </div>
+  </div>
+
+  <!-- 板块二:每日一词 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-word">📖</div>
+      <div class="section-title">每日一词</div>
+      <div class="section-sub">1新 · 4回顾</div>
+    </div>
+
+    <div class="word-top">
+      <div class="word-new-label">TODAY'S WORD</div>
+      <div class="word-en">Pivot</div>
+      <div class="word-phonetic-row">
+        <span class="word-phonetic">/ˈpɪvət/</span>
+        <button class="word-play" onclick="new Audio('https://dict.youdao.com/dictvoice?audio=pivot&type=2').play()">▶ 发音</button>
+      </div>
+      <div class="word-zh">
+        <strong>转向;关键转折</strong><br>
+        在创业和产品开发中,指基于验证结果快速调整方向,而不是固守原计划。不是放弃,而是用学到的东西重新定义问题和解决方案。<br>
+        <small>常见搭配:pivot strategy(转向策略) / pivot point(转折点) / pivot or persevere(转向还是坚持)</small>
+      </div>
+    </div>
+
+    <div class="word-quote-wrap">
+      <div class="word-quote">"A <em>pivot</em> is a structured course correction designed to test a new fundamental hypothesis about the product, strategy, and engine of growth."</div>
+      <div class="word-quote-author">— Eric Ries,《精益创业》</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="recall-label">RECALL · 近期词汇回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-22</div>
+        <div>
+          <div class="recall-word">Leverage</div>
+          <div class="recall-zh">杠杆;借力放大</div>
+        </div>
+        <div class="recall-hint">用最小资源撬动最大结果</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-21</div>
+        <div>
+          <div class="recall-word">Context</div>
+          <div class="recall-zh">情境;背景;上下文</div>
+        </div>
+        <div class="recall-hint">理解决策所需的周边信息和环境</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-20</div>
+        <div>
+          <div class="recall-word">Autonomy</div>
+          <div class="recall-zh">自主权;自治</div>
+        </div>
+        <div class="recall-hint">对工作方式和目标的掌控能力</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-19</div>
+        <div>
+          <div class="recall-word">Contrarian</div>
+          <div class="recall-zh">逆向思维者;反共识者</div>
+        </div>
+        <div class="recall-hint">不随大流,主动寻找被忽视的真相</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三:今日书摘 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-book">📚</div>
+      <div class="section-title">今日书摘</div>
+      <div class="section-sub">埃里克·莱斯</div>
+    </div>
+
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《精益创业》</div>
+      <div class="book-core">不要花6个月做一个完美的产品,然后发现没人要。先用最小可行产品(MVP)验证核心假设,快速学习,快速调整,在资源耗尽前找到真正的市场需求。</div>
+    </div>
+
+    <div class="book-body">
+      <div class="insight">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">创业不是执行计划,而是验证假设</div>
+        <div class="insight-body">莱斯最颠覆的观点:传统商业计划的逻辑是"我有一个想法→做出产品→推向市场",但这个逻辑的问题是,你在第一步就假设了"这个想法是对的"。精益创业的逻辑是:我有一个假设→用最小成本验证→如果错了就调整(pivot),如果对了就放大。这不是"做得更快",而是"学得更快"——因为创业最大的风险不是做得慢,而是做了一个没人要的东西。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">最小可行产品(MVP)不是"简陋版",而是"验证版"</div>
+        <div class="insight-body">很多人误解MVP,以为是"先做一个功能不全的产品,然后慢慢完善"。莱斯说,MVP的核心不是"最小",而是"可验证"——它要能回答你最关键的那个问题。比如Dropbox的MVP不是一个功能简陋的云盘,而是一个3分钟的演示视频——因为他们要验证的问题是"用户真的需要这个东西吗",而不是"我们能不能做出来"。MVP的本质是:用最小的成本,获得最大的学习。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">转向(Pivot)不是失败,而是学习的结果</div>
+        <div class="insight-body">莱斯强调,精益创业的核心是"构建-测量-学习"的循环,而转向(pivot)是这个循环的自然产物。当你发现假设错了,最理性的选择不是"再坚持一下",而是"用学到的东西重新定义问题"。Instagram最初是一个基于地理位置的社交应用,但数据显示用户只用照片分享功能,于是他们pivot成了纯照片应用。Twitter最初是一个播客平台,但用户只用"状态更新"功能,于是他们pivot成了微博。转向不是放弃,而是用数据指导方向。</div>
+      </div>
+
+      <div class="extend-wrap">
+        <div class="extend-label">IVAN · 延伸思考</div>
+        <div class="extend-body">你现在面对的去留问题,可以用精益创业的思维来看:如果你想创业,你的核心假设是什么?是"我能做一个比现有HR SaaS更好的产品",还是"我能帮中小企业解决招人难的问题",还是"我能用AI重构绩效体系"?找到这个假设,然后问自己:我可以用什么最小的成本来验证它?也许不是"辞职创业",而是"利用周末做一个MVP,找10个HR朋友试用"。莱斯会说:不要等到想清楚了再行动,而是通过行动来想清楚——但要确保每一步行动都在验证假设,而不是在消耗资源。</div>
+      </div>
+    </div>
+
+    <div class="tmr-wrap">
+      <div class="tmr-label">TOMORROW'S READING LIST · 三选一</div>
+      <div class="tmr-grid">
+        <div class="tmr-card">
+          <div class="tmr-tag">产品思维</div>
+          <div class="tmr-title">《启示录》</div>
+          <div class="tmr-desc">马蒂·卡根。硅谷产品经理的圣经,如何打造用户真正需要的产品。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">增长方法</div>
+          <div class="tmr-title">《增长黑客》</div>
+          <div class="tmr-desc">肖恩·埃利斯。用数据驱动增长,低成本获取用户的系统方法。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">创业实战</div>
+          <div class="tmr-title">《从0到1》</div>
+          <div class="tmr-desc">彼得·蒂尔。真正的创业不是复制,而是找到别人还没看见的秘密。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">每日铸读 · 2026.05.23 · 星期六</div>
+    <div class="footer-right">— Ivan 的分身</div>
+  </div>
+
+</div>
+</body>
+</html>
