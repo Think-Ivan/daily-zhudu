@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铸读 2026.05.21 · 周四</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f3ef; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1a1a1a; }
+  .top-bar { height: 5px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+
+  .header { margin-bottom: 40px; }
+  .header-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #c9a96e; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+
+  .section { margin-bottom: 36px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; border-bottom: 1px solid #f2f0ec; display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .icon-news { background: #fdf3e3; }
+  .icon-word { background: #e8f4f0; }
+  .icon-book { background: #e8f0f7; }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #bbb; margin-left: auto; }
+
+  /* News */
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ef; }
+  .news-item:last-child { border-bottom: none; }
+  .news-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; }
+  .tag-model { background: #fdf3e3; color: #c9a96e; }
+  .tag-global { background: #e8f0f7; color: #7ba7bc; }
+  .tag-bigco { background: #f0edf7; color: #9b8ea8; }
+  .tag-biz { background: #e8f4f0; color: #5a9e8a; }
+  .tag-hz { background: #fdeee8; color: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; line-height: 1.4; margin-bottom: 6px; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.8; }
+
+  /* Word */
+  .word-new-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #c9a96e; margin-bottom: 12px; }
+  .word-top { padding: 28px 24px 22px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 42px; font-weight: 800; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .word-phonetic { font-size: 14px; color: #a8c4b8; font-family: monospace; }
+  .word-play { background: none; border: 1px solid #e0ddd8; border-radius: 4px; padding: 3px 10px; font-size: 11px; color: #999; cursor: pointer; }
+  .word-play:hover { background: #f5f3ef; }
+  .word-zh { font-size: 14px; color: #666; line-height: 1.7; }
+  .word-zh strong { color: #1a1a1a; }
+  .word-zh small { color: #aaa; font-size: 12px; display: block; margin-top: 4px; }
+  .word-quote-wrap { padding: 16px 24px; border-bottom: 1px solid #f2f0ec; background: #faf9f7; }
+  .word-quote { font-size: 13px; color: #666; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #c9a96e; }
+  .word-quote-author { font-size: 11px; color: #bbb; margin-top: 6px; }
+  .word-recall-wrap { padding: 16px 24px; }
+  .recall-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 12px; }
+  .word-recall-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f3ef; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-date { font-size: 10px; color: #bbb; font-family: monospace; }
+  .recall-word { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .recall-zh { font-size: 12px; color: #888; margin-top: 2px; }
+  .recall-hint { font-size: 12px; color: #aaa; }
+
+  /* Book */
+  .book-header { padding: 24px 24px 18px; border-bottom: 1px solid #f2f0ec; }
+  .book-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 8px; }
+  .book-title { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+  .book-core { font-size: 13px; color: #666; line-height: 1.7; padding: 12px 16px; background: #f5f8fb; border-radius: 6px; border-left: 3px solid #7ba7bc; margin-top: 10px; }
+  .book-body { padding: 24px; }
+  .insight { margin-bottom: 24px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #9b8ea8; margin-bottom: 6px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.85; }
+  .extend-wrap { margin-top: 24px; padding: 18px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .extend-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #e8a87c; margin-bottom: 8px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.85; }
+
+  /* Tomorrow */
+  .tmr-wrap { padding: 20px 24px 24px; border-top: 1px solid #f2f0ec; }
+  .tmr-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { padding: 14px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .tmr-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #bbb; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; line-height: 1.4; }
+  .tmr-desc { font-size: 11px; color: #888; line-height: 1.6; }
+
+  /* Footer */
+  .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ece9e3; }
+  .footer-left { font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
+  .footer-right { font-size: 11px; color: #bbb; }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px 52px; }
+    .header-title { font-size: 22px; }
+    .word-en { font-size: 30px; }
+    .word-top { padding: 20px 18px 16px; }
+    .word-quote-wrap { padding: 16px 18px; }
+    .word-recall-wrap { padding: 16px 18px; }
+    .word-recall-item { grid-template-columns: 48px 1fr auto; gap: 8px; }
+    .word-recall-date { display: none; }
+    .book-header { padding: 20px 18px 16px; }
+    .book-body { padding: 20px 18px; }
+    .book-title { font-size: 18px; }
+    .tmr-grid { grid-template-columns: 1fr; gap: 10px; }
+    .news-title { font-size: 14px; }
+    .news-body { font-size: 12px; }
+    .footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="container">
+
+  <div class="header">
+    <div class="header-label">DAILY ZHUDU · 第 7 期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">2026年5月21日 · 周四 · 只招成年人,然后像对待成年人那样对待他们</div>
+  </div>
+
+  <!-- 板块一:AI 今日要闻 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-news">📡</div>
+      <div class="section-title">AI 今日要闻</div>
+      <div class="section-sub">2026.05.21</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-model">大模型动态</div>
+      <div class="news-title">Anthropic发布Claude 4.7,上下文窗口扩展至200万token</div>
+      <div class="news-body">Anthropic发布Claude 4.7 Opus,上下文窗口从此前的100万token扩展至200万token,相当于可以一次性处理约150万字的中文文本。这一突破让AI能够完整分析一家中型公司全年的员工反馈、绩效记录、离职面谈等HR数据,并给出系统性洞察。对HR从业者而言,这意味着"把所有数据喂给AI,让它帮你找规律"这件事,从理论变成了现实。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-global">全球动态</div>
+      <div class="news-title">全球AI人才争夺战升级,硅谷平均年薪突破50万美元</div>
+      <div class="news-body">据Levels.fyi最新数据,硅谷AI工程师平均年薪已突破50万美元,顶尖AI研究员的薪酬包可达200万美元以上。与此同时,中国、欧洲、中东各国纷纷推出AI人才引进计划,全球AI人才流动进入白热化阶段。对HR而言,这不仅是薪酬基准的参考,更是一个信号:在AI时代,人才的议价权正在快速向技术侧倾斜,传统的薪酬体系和留人策略需要重新设计。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-bigco">国内大厂</div>
+      <div class="news-title">阿里推出"AI面试官",候选人体验评分达4.2/5</div>
+      <div class="news-body">阿里巴巴内部孵化的AI面试产品"小蛮驴面试官"正式对外开放,已服务超过300家企业。产品核心能力是"像人一样追问":根据候选人的回答动态调整问题,既能考察专业能力,也能评估思维方式和价值观匹配度。内测数据显示,候选人对AI面试的体验评分达4.2/5,高于传统电话初筛。这个案例的启示是:AI不是用来"替代"面试官的,而是用来"解放"面试官——把标准化的筛选交给AI,把需要人类判断的部分留给人。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-biz">企业落地</div>
+      <div class="news-title">某独角兽公司用AI重构OKR体系,目标达成率提升38%</div>
+      <div class="news-body">一家估值超10亿美元的SaaS公司用AI重构了传统的OKR体系,核心逻辑是"用AI帮每个人找到最有杠杆的目标"。系统会分析员工的历史绩效、当前项目、团队协作网络,然后推荐3-5个"如果做成,对公司和个人都有最大价值"的目标。实施一个季度后,目标达成率从62%提升至86%,员工对OKR的认同感显著提高。这个案例的核心是:AI不是用来"监控"目标的,而是用来"发现"目标的——那些人类管理者因为信息过载而看不见的机会。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-hz">杭州动态</div>
+      <div class="news-title">杭州成立全国首个"AI+HR"产业联盟,20家头部企业加入</div>
+      <div class="news-body">杭州市人社局牵头成立全国首个"AI+HR"产业联盟,阿里、网易、海康威视、大华等20家头部企业成为首批成员。联盟将推动AI在招聘、培训、绩效、薪酬等HR全场景的应用标准制定,并建立人才共享机制。对杭州本地HR从业者而言,这是一个明确的信号:杭州正在把"AI+HR"作为城市人才战略的核心抓手,不懂AI的HR,在杭州的职业发展空间会越来越窄。</div>
+    </div>
+  </div>
+
+  <!-- 板块二:每日一词 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-word">📖</div>
+      <div class="section-title">每日一词</div>
+      <div class="section-sub">1新 · 4回顾</div>
+    </div>
+
+    <div class="word-top">
+      <div class="word-new-label">TODAY'S WORD</div>
+      <div class="word-en">Context</div>
+      <div class="word-phonetic-row">
+        <span class="word-phonetic">/ˈkɒntekst/</span>
+        <button class="word-play" onclick="new Audio('https://dict.youdao.com/dictvoice?audio=context&type=2').play()">▶ 发音</button>
+      </div>
+      <div class="word-zh">
+        <strong>情境;背景;上下文</strong><br>
+        理解某个事件、决策或行为所需的周边信息和环境。在组织管理中,指员工做决策时需要掌握的业务背景、战略意图、资源约束等信息。<br>
+        <small>常见搭配:provide context(提供背景) / lack of context(缺乏上下文) / context-driven decision(基于情境的决策)</small>
+      </div>
+    </div>
+
+    <div class="word-quote-wrap">
+      <div class="word-quote">"The best managers provide <em>context</em>, not control."</div>
+      <div class="word-quote-author">— Patty McCord,《奈飞文化手册》</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="recall-label">RECALL · 近期词汇回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-20</div>
+        <div>
+          <div class="recall-word">Autonomy</div>
+          <div class="recall-zh">自主权;自治</div>
+        </div>
+        <div class="recall-hint">对工作方式和目标的掌控能力</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-19</div>
+        <div>
+          <div class="recall-word">Contrarian</div>
+          <div class="recall-zh">逆向思维者;反共识者</div>
+        </div>
+        <div class="recall-hint">不随大流,主动寻找被忽视的真相</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-18</div>
+        <div>
+          <div class="recall-word">Accountability</div>
+          <div class="recall-zh">责任担当;可问责性</div>
+        </div>
+        <div class="recall-hint">为结果负责,不推诿</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-16</div>
+        <div>
+          <div class="recall-word">Inflection</div>
+          <div class="recall-zh">拐点;转折</div>
+        </div>
+        <div class="recall-hint">行业或个人发展的关键转折时刻</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三:今日书摘 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-book">📚</div>
+      <div class="section-title">今日书摘</div>
+      <div class="section-sub">帕蒂·麦考德</div>
+    </div>
+
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《奈飞文化手册》</div>
+      <div class="book-core">不要把员工当小孩管。招最优秀的成年人,给他们足够的情境(context),然后让他们自己做决策。如果他们做不到,那是招错人了,不是管理方法的问题。</div>
+    </div>
+
+    <div class="book-body">
+      <div class="insight">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">高绩效文化的核心是高人才密度</div>
+        <div class="insight-body">麦考德最颠覆的观点:不要试图用流程和制度去管理平庸的人,而是只招最优秀的人,然后给他们自由。奈飞的做法是:每个岗位都招"市场上能找到的最好的人",薪酬给到行业top 10%,然后用"守门人测试"持续淘汰——如果这个人要离职,你会拼命挽留吗?如果不会,现在就该让他离开。这听起来残酷,但逻辑很清晰:一个优秀的人可以顶十个平庸的人,而十个平庸的人会拖垮一个优秀的人。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">提供情境,而非控制</div>
+        <div class="insight-body">麦考德反对传统的"审批文化"。她认为,如果你招的是成年人,就应该像对待成年人那样对待他们——不是告诉他们"该怎么做",而是告诉他们"为什么要做""我们的目标是什么""资源和约束是什么",然后让他们自己决定怎么做。这就是"提供情境,而非控制"。奈飞没有差旅审批、没有报销上限、没有休假天数限制——因为他们相信,如果一个人需要被这些规则约束,那他根本不应该在这里。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">诚实的反馈是最大的尊重</div>
+        <div class="insight-body">麦考德主张"激进的坦诚":如果一个人的表现不符合预期,最尊重他的方式不是"再给他一次机会",而是直接告诉他"你不适合这个岗位"。很多公司的HR会说"我们要保护员工的感受",但麦考德认为,真正保护员工的方式是让他们尽早知道真相,而不是让他们在一个不适合的岗位上浪费时间。奈飞的文化是:如果你的表现不再符合公司的需要,我们会给你一笔慷慨的离职补偿,帮你体面地离开,而不是让你在这里混日子。</div>
+      </div>
+
+      <div class="extend-wrap">
+        <div class="extend-label">IVAN · 延伸思考</div>
+        <div class="extend-body">你现在管着200人的HR体系,但你对团队的热情在下降——可能是因为你在用"管理平庸"的方式消耗自己,而不是在"释放优秀"。麦考德会问你:你的团队里有多少人通过了"守门人测试"?有多少人是你会拼命挽留的?如果答案是"不到一半",那问题不是你不够努力,而是你在一个错误的游戏里——你在试图用流程和激励去弥补人才密度的不足。如果你35岁前要有自己的公司,那从现在开始,你需要练习的不是"怎么管人",而是"怎么只和最优秀的人一起工作"。</div>
+      </div>
+    </div>
+
+    <div class="tmr-wrap">
+      <div class="tmr-label">TOMORROW'S READING LIST · 三选一</div>
+      <div class="tmr-grid">
+        <div class="tmr-card">
+          <div class="tmr-tag">战略思维</div>
+          <div class="tmr-title">《好战略,坏战略》</div>
+          <div class="tmr-desc">理查德·鲁梅尔特。真正的战略不是目标,而是一套解决难题的连贯行动。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">组织设计</div>
+          <div class="tmr-title">《重新定义团队》</div>
+          <div class="tmr-desc">谷歌如何用数据和实验,找到高效团队的真正秘密——心理安全感。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">个人成长</div>
+          <div class="tmr-title">《终身成长》</div>
+          <div class="tmr-desc">卡罗尔·德韦克。成长型思维vs固定型思维,决定了你能走多远。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">每日铸读 · 2026.05.21 · 星期四</div>
+    <div class="footer-right">— Ivan 的分身</div>
+  </div>
+
+</div>
+</body>
+</html>
