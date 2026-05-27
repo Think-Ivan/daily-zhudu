@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铸读 2026.05.20 · 周三</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f3ef; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1a1a1a; }
+  .top-bar { height: 5px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+
+  .header { margin-bottom: 40px; }
+  .header-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #c9a96e; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+
+  .section { margin-bottom: 36px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; border-bottom: 1px solid #f2f0ec; display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .icon-news { background: #fdf3e3; }
+  .icon-word { background: #e8f4f0; }
+  .icon-book { background: #e8f0f7; }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #bbb; margin-left: auto; }
+
+  /* News */
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ef; }
+  .news-item:last-child { border-bottom: none; }
+  .news-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; }
+  .tag-model { background: #fdf3e3; color: #c9a96e; }
+  .tag-global { background: #e8f0f7; color: #7ba7bc; }
+  .tag-bigco { background: #f0edf7; color: #9b8ea8; }
+  .tag-biz { background: #e8f4f0; color: #5a9e8a; }
+  .tag-hz { background: #fdeee8; color: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; line-height: 1.4; margin-bottom: 6px; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.8; }
+
+  /* Word */
+  .word-new-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #c9a96e; margin-bottom: 12px; }
+  .word-top { padding: 28px 24px 22px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 42px; font-weight: 800; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .word-phonetic { font-size: 14px; color: #a8c4b8; font-family: monospace; }
+  .word-play { background: none; border: 1px solid #e0ddd8; border-radius: 4px; padding: 3px 10px; font-size: 11px; color: #999; cursor: pointer; }
+  .word-play:hover { background: #f5f3ef; }
+  .word-zh { font-size: 14px; color: #666; line-height: 1.7; }
+  .word-zh strong { color: #1a1a1a; }
+  .word-zh small { color: #aaa; font-size: 12px; display: block; margin-top: 4px; }
+  .word-quote-wrap { padding: 16px 24px; border-bottom: 1px solid #f2f0ec; background: #faf9f7; }
+  .word-quote { font-size: 13px; color: #666; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #c9a96e; }
+  .word-quote-author { font-size: 11px; color: #bbb; margin-top: 6px; }
+  .word-recall-wrap { padding: 16px 24px; }
+  .recall-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 12px; }
+  .word-recall-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f3ef; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-date { font-size: 10px; color: #bbb; font-family: monospace; }
+  .recall-word { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .recall-zh { font-size: 12px; color: #888; margin-top: 2px; }
+  .recall-hint { font-size: 12px; color: #aaa; }
+
+  /* Book */
+  .book-header { padding: 24px 24px 18px; border-bottom: 1px solid #f2f0ec; }
+  .book-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 8px; }
+  .book-title { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+  .book-core { font-size: 13px; color: #666; line-height: 1.7; padding: 12px 16px; background: #f5f8fb; border-radius: 6px; border-left: 3px solid #7ba7bc; margin-top: 10px; }
+  .book-body { padding: 24px; }
+  .insight { margin-bottom: 24px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #9b8ea8; margin-bottom: 6px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.85; }
+  .extend-wrap { margin-top: 24px; padding: 18px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .extend-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #e8a87c; margin-bottom: 8px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.85; }
+
+  /* Tomorrow */
+  .tmr-wrap { padding: 20px 24px 24px; border-top: 1px solid #f2f0ec; }
+  .tmr-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { padding: 14px; background: #faf9f7; border-radius: 8px; border: 1px solid #f0eeea; }
+  .tmr-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #bbb; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; line-height: 1.4; }
+  .tmr-desc { font-size: 11px; color: #888; line-height: 1.6; }
+
+  /* Footer */
+  .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ece9e3; }
+  .footer-left { font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
+  .footer-right { font-size: 11px; color: #bbb; }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px 52px; }
+    .header-title { font-size: 22px; }
+    .word-en { font-size: 30px; }
+    .word-top { padding: 20px 18px 16px; }
+    .word-quote-wrap { padding: 16px 18px; }
+    .word-recall-wrap { padding: 16px 18px; }
+    .word-recall-item { grid-template-columns: 48px 1fr auto; gap: 8px; }
+    .word-recall-date { display: none; }
+    .book-header { padding: 20px 18px 16px; }
+    .book-body { padding: 20px 18px; }
+    .book-title { font-size: 18px; }
+    .tmr-grid { grid-template-columns: 1fr; gap: 10px; }
+    .news-title { font-size: 14px; }
+    .news-body { font-size: 12px; }
+    .footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="container">
+
+  <div class="header">
+    <div class="header-label">DAILY ZHUDU · 第 6 期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">2026年5月20日 · 周三 · 真正驱动人的不是胡萝卜和大棒</div>
+  </div>
+
+  <!-- 板块一：AI 今日要闻 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-news">📡</div>
+      <div class="section-title">AI 今日要闻</div>
+      <div class="section-sub">2026.05.20</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-model">大模型动态</div>
+      <div class="news-title">OpenAI发布GPT-5预览版，推理能力提升40%</div>
+      <div class="news-body">OpenAI在开发者大会上发布GPT-5早期预览版本，在复杂推理任务上相比GPT-4提升40%，多模态理解能力显著增强。同时宣布企业版API价格下调30%，并推出针对HR场景的预训练模板——包括简历筛选、面试评估、员工反馈分析等开箱即用的能力。对HR从业者而言，这意味着AI工具的准入门槛再次降低，中小企业也能用上接近大厂水平的智能化招聘系统。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-global">全球动态</div>
+      <div class="news-title">欧盟AI法案正式生效，全球首个AI监管框架落地</div>
+      <div class="news-body">欧盟《人工智能法案》于5月20日正式生效,将AI系统按风险等级分为四类监管。高风险AI应用(包括招聘系统、员工绩效评估工具)必须通过合规审查才能在欧盟市场使用。对跨国企业HR而言,这意味着所有涉及欧盟员工的AI工具都需要重新审视合规性——算法透明度、数据来源、决策可解释性都将成为硬性要求。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-bigco">国内大厂</div>
+      <div class="news-title">字节跳动推出"豆包HR助手",日活突破50万</div>
+      <div class="news-body">字节跳动旗下豆包大模型推出垂直HR场景的智能助手,上线两周日活用户突破50万。产品聚焦三大场景:智能排班、薪酬测算、离职预警。内部数据显示,使用豆包HR助手的企业,HR人效平均提升35%,员工满意度提高18%。这一产品的快速渗透,标志着AI正在从"辅助工具"变成"基础设施"——不用AI的HR团队,效率劣势将越来越明显。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-biz">企业落地</div>
+      <div class="news-title">某头部电商公司用AI重构绩效体系,员工流失率下降22%</div>
+      <div class="news-body">一家年GMV超500亿的电商公司用AI重构了传统的KPI绩效体系,核心逻辑是"用数据还原真实贡献,而非用指标倒逼行为"。系统通过分析员工的协作网络、项目交付质量、跨部门影响力等多维数据,生成个性化的贡献画像。实施半年后,员工流失率下降22%,内部晋升准确率提升31%。这个案例的启示是:AI不是用来"监控"员工的,而是用来"看见"那些传统绩效体系看不见的价值。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-hz">杭州动态</div>
+      <div class="news-title">杭州发布"AI+人力资源"产业扶持政策,最高补贴500万</div>
+      <div class="news-body">杭州市人社局联合经信局发布《关于加快推进人工智能与人力资源服务融合发展的若干意见》,对开发AI HR产品的企业给予最高500万元研发补贴,对使用AI工具的人力资源服务机构给予30%的技术改造补贴。政策明确提出,到2027年,杭州要建成全国领先的"AI+HR"产业集群。对杭州本地HR从业者而言,这是一个明确的信号:不懂AI的HR,在杭州的职业天花板会越来越低。</div>
+    </div>
+  </div>
+
+  <!-- 板块二:每日一词 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-word">📖</div>
+      <div class="section-title">每日一词</div>
+      <div class="section-sub">1新 · 4回顾</div>
+    </div>
+
+    <div class="word-top">
+      <div class="word-new-label">TODAY'S WORD</div>
+      <div class="word-en">Autonomy</div>
+      <div class="word-phonetic-row">
+        <span class="word-phonetic">/ɔːˈtɒnəmi/</span>
+        <button class="word-play" onclick="new Audio('https://dict.youdao.com/dictvoice?audio=autonomy&type=2').play()">▶ 发音</button>
+      </div>
+      <div class="word-zh">
+        <strong>自主权;自治</strong><br>
+        个体或组织在决策和行动上的独立性,不受外部过度干预的能力。在组织管理中,指员工对工作方式、时间、目标的掌控程度。<br>
+        <small>常见搭配:personal autonomy(个人自主权) / autonomy at work(工作自主性) / grant autonomy(赋予自主权)</small>
+      </div>
+    </div>
+
+    <div class="word-quote-wrap">
+      <div class="word-quote">"Control leads to compliance; <em>autonomy</em> leads to engagement."</div>
+      <div class="word-quote-author">— Daniel Pink,《驱动力》</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="recall-label">RECALL · 近期词汇回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-19</div>
+        <div>
+          <div class="recall-word">Contrarian</div>
+          <div class="recall-zh">逆向思维者;反共识者</div>
+        </div>
+        <div class="recall-hint">不随大流,主动寻找被忽视的真相</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-18</div>
+        <div>
+          <div class="recall-word">Accountability</div>
+          <div class="recall-zh">责任担当;可问责性</div>
+        </div>
+        <div class="recall-hint">为结果负责,不推诿</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-16</div>
+        <div>
+          <div class="recall-word">Inflection</div>
+          <div class="recall-zh">拐点;转折</div>
+        </div>
+        <div class="recall-hint">行业或个人发展的关键转折时刻</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-15</div>
+        <div>
+          <div class="recall-word">Pivot</div>
+          <div class="recall-zh">关键转折;战略转向</div>
+        </div>
+        <div class="recall-hint">在不确定中主动调整方向</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三:今日书摘 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-book">📚</div>
+      <div class="section-title">今日书摘</div>
+      <div class="section-sub">丹尼尔·平克</div>
+    </div>
+
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《驱动力》</div>
+      <div class="book-core">胡萝卜加大棒的时代结束了。真正驱动人的,是自主(做自己想做的)、专精(把事情做到极致)、目的(为更大的意义而做)。</div>
+    </div>
+
+    <div class="book-body">
+      <div class="insight">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">外在激励会杀死内在动机</div>
+        <div class="insight-body">平克用大量实验证明了一个反直觉的事实:对于需要创造性和复杂思考的工作,物质奖励不仅无效,甚至有害。当你用奖金激励一个人做一件他本来感兴趣的事,他会开始把这件事当成"为了钱而做的任务",内在的热情反而被消解了。这就是为什么很多公司花大价钱做激励,员工却越来越像打工人——因为激励机制本身在传递一个信号:"你做这件事是为了钱,不是因为你在乎它。"</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">自主权比薪水更重要</div>
+        <div class="insight-body">平克提出,人类有三种核心心理需求:自主(我能决定怎么做)、胜任(我能把事情做好)、归属(我做的事有意义)。当这三个需求被满足,人会进入一种"心流"状态——不是为了外部奖励,而是因为工作本身就是奖励。这解释了为什么有些人拿着高薪却痛苦,有些人收入一般却充满干劲——后者拥有的,是对自己工作的掌控感。</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">目的是最强的驱动力</div>
+        <div class="insight-body">平克区分了三种动机:1.0版本是生存(吃饱穿暖),2.0版本是奖惩(胡萝卜加大棒),3.0版本是目的(为更大的意义而做)。在知识经济时代,真正能持续驱动人的,是"我做的事情有意义"这个信念。这不是鸡汤,而是神经科学的结论:当人相信自己的工作在改变什么,大脑会分泌更多多巴胺,抗压能力和创造力都会显著提升。</div>
+      </div>
+
+      <div class="extend-wrap">
+        <div class="extend-label">IVAN · 延伸思考</div>
+        <div class="extend-body">你现在对团队的热情在下降,可能不是因为钱不够,而是因为自主权和目的感在流失。你在一个200人的框架里做HR,很多决策不是你能定的,很多你想推的事推不动——这是自主权的缺失。同时,你心里那个"35岁前有自己的公司"的目标,和现在"帮别人搭班子"的日常工作,在目的上是割裂的。平克会说:如果你想重新找回驱动力,要么在现有环境里争取更多自主权和对齐目的,要么换一个能让你拥有这两样东西的地方——比如你自己的公司。</div>
+      </div>
+    </div>
+
+    <div class="tmr-wrap">
+      <div class="tmr-label">TOMORROW'S READING LIST · 三选一</div>
+      <div class="tmr-grid">
+        <div class="tmr-card">
+          <div class="tmr-tag">组织变革</div>
+          <div class="tmr-title">《奈飞文化手册》</div>
+          <div class="tmr-desc">帕蒂·麦考德。奈飞如何用"只招成年人"的文化,打造了全球最强的内容帝国。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">深度思考</div>
+          <div class="tmr-title">《思考,快与慢》</div>
+          <div class="tmr-desc">丹尼尔·卡尼曼。诺奖得主揭示人类决策的两套系统,以及我们如何被直觉欺骗。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">个人成长</div>
+          <div class="tmr-title">《刻意练习》</div>
+          <div class="tmr-desc">安德斯·艾利克森。天才不是天生的,专精来自正确的练习方法。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">每日铸读 · 2026.05.20 · 星期三</div>
+    <div class="footer-right">— Ivan 的分身</div>
+  </div>
+
+</div>
+</body>
+</html>
