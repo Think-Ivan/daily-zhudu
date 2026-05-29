@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铸读 2026.05.28 · 周四</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f3ef; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1a1a1a; }
+  .top-bar { height: 5px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+
+  .header { margin-bottom: 40px; }
+  .header-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #c9a96e; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+
+  .section { margin-bottom: 36px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; border-bottom: 1px solid #f2f0ec; display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .icon-news { background: #fdf3e3; }
+  .icon-word { background: #e8f4f0; }
+  .icon-book { background: #e8f0f7; }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #bbb; margin-left: auto; }
+
+  /* News */
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ef; }
+  .news-item:last-child { border-bottom: none; }
+  .news-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; }
+  .tag-model { background: #fdf3e3; color: #c9a96e; }
+  .tag-global { background: #e8f4f0; color: #6b9d8a; }
+  .tag-domestic { background: #f3e8f4; color: #9b8ea8; }
+  .tag-enterprise { background: #e8f0f7; color: #7ba7bc; }
+  .tag-hangzhou { background: #fef0e8; color: #e8a87c; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; line-height: 1.4; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.7; }
+
+  /* Word */
+  .word-top { padding: 24px 24px 20px; border-bottom: 1px solid #f2f0ec; }
+  .word-en { font-size: 36px; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; }
+  .word-phonetic-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .word-phonetic { font-size: 14px; color: #999; font-style: italic; }
+  .word-play { width: 24px; height: 24px; border-radius: 50%; background: #a8c4b8; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; }
+  .word-play:hover { background: #8fb0a3; }
+  .word-zh { font-size: 15px; color: #555; margin-bottom: 6px; }
+  .word-usage { font-size: 12px; color: #999; }
+
+  .word-quote-wrap { padding: 20px 24px; background: #fafaf8; border-bottom: 1px solid #f2f0ec; }
+  .word-quote { font-size: 14px; color: #555; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #a8c4b8; }
+  .word-quote-author { font-size: 12px; color: #999; margin-top: 8px; text-align: right; }
+
+  .word-recall-wrap { padding: 20px 24px; }
+  .word-recall-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #bbb; margin-bottom: 14px; }
+  .word-recall-item { display: grid; grid-template-columns: 60px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f3ef; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-date { font-size: 11px; color: #bbb; font-weight: 700; }
+  .recall-word { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+  .recall-zh { font-size: 12px; color: #999; margin-top: 2px; }
+  .recall-hint { font-size: 11px; color: #bbb; text-align: right; }
+
+  /* Book */
+  .book-header { padding: 24px 24px 20px; border-bottom: 1px solid #f2f0ec; }
+  .book-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 8px; }
+  .book-title { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-bottom: 12px; }
+  .book-core { font-size: 13px; color: #555; line-height: 1.7; background: #fafaf8; padding: 12px 16px; border-radius: 6px; border-left: 3px solid #7ba7bc; }
+
+  .book-body { padding: 24px 24px; }
+  .insight { margin-bottom: 24px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #7ba7bc; margin-bottom: 6px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.8; }
+
+  .extend-wrap { margin-top: 28px; padding-top: 24px; border-top: 1px solid #f2f0ec; }
+  .extend-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #e8a87c; margin-bottom: 10px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.8; background: #fef9f5; padding: 14px 18px; border-radius: 6px; border-left: 3px solid #e8a87c; }
+
+  .tmr-wrap { margin-top: 28px; padding-top: 24px; border-top: 1px solid #f2f0ec; }
+  .tmr-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #9b8ea8; margin-bottom: 14px; }
+  .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tmr-card { background: #fafaf8; padding: 14px; border-radius: 8px; border: 1px solid #f2f0ec; }
+  .tmr-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #9b8ea8; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .tmr-desc { font-size: 11px; color: #999; line-height: 1.6; }
+
+  .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #e8e6e0; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left, .footer-right { font-size: 11px; color: #bbb; }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px 52px; }
+    .header-title { font-size: 22px; }
+    .word-en { font-size: 30px; }
+    .word-top { padding: 20px 18px 16px; }
+    .word-quote-wrap { padding: 16px 18px; }
+    .word-recall-wrap { padding: 16px 18px; }
+    .word-recall-item { grid-template-columns: 48px 1fr auto; gap: 8px; }
+    .word-recall-date { display: none; }
+    .book-header { padding: 20px 18px 16px; }
+    .book-body { padding: 20px 18px; }
+    .book-title { font-size: 18px; }
+    .tmr-grid { grid-template-columns: 1fr; gap: 10px; }
+    .news-title { font-size: 14px; }
+    .news-body { font-size: 12px; }
+    .footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<div class="container">
+  <div class="header">
+    <div class="header-label">DAILY ZHUDU · 第 12 期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">AI × 职场 × 思维 · 为 Ivan 定制</div>
+  </div>
+
+  <!-- 板块一:AI今日要闻 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-news">📰</div>
+      <div class="section-title">AI 今日要闻</div>
+      <div class="section-sub">5 条</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-model">大模型动态</div>
+      <div class="news-title">Anthropic 发布 Claude 4：多模态推理能力全面升级</div>
+      <div class="news-body">Anthropic 正式发布 Claude 4 系列模型，支持图像、文档、代码的深度理解与生成，推理链路更透明。新增"思考模式"让模型在复杂任务中展示推理过程，帮助用户理解 AI 如何得出结论。这对 HR 意味着什么？未来的简历筛选、面试评估、组织诊断，AI 不再是"黑盒"，而是能解释"为什么这个候选人更合适"。你现在的 HR 决策，能像 AI 一样清晰地说出推理过程吗？</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-enterprise">企业落地</div>
+      <div class="news-title">腾讯企业微信全面接入 AI 助手：支持会议纪要、任务拆解、知识问答</div>
+      <div class="news-body">腾讯在企业微信中内置 AI 助手，支持会议实时转录+自动生成纪要、任务自动拆解为子任务、企业知识库智能问答。内测企业反馈：会议效率提升 40%，跨部门协作摩擦降低 30%。这个案例说明：AI 不是替代沟通，而是让沟通的"信息损耗"降到最低。你现在的团队协作工具，能承接这种变化吗？如果每次会议都能自动生成可执行的任务清单，你的管理方式会怎么调整？</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-global">全球动态</div>
+      <div class="news-title">欧盟 AI 法案正式生效：企业 AI 应用需通过"透明度审查"</div>
+      <div class="news-body">欧盟《人工智能法案》正式实施，要求所有面向用户的 AI 系统必须披露决策逻辑、数据来源、潜在偏见。违规企业最高罚款 3000 万欧元或全球营收 6%。这对 HR 意味着什么？如果你用 AI 做招聘筛选、绩效评估，你能解释清楚 AI 的判断依据吗？未来的 HR 不仅要懂业务，还要懂"AI 合规"——这是新的职业门槛。</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-domestic">国内大厂</div>
+      <div class="news-title">百度文心大模型 4.0 发布：主打"企业知识增强"能力</div>
+      <div class="news-body">百度发布文心大模型 4.0，核心升级是"企业知识增强"——支持企业上传内部文档、流程、案例，AI 自动构建知识图谱，回答时优先引用企业内部知识。测试数据：企业内部问答准确率提升至 92%，新员工培训时长缩短 50%。这对 HR 是机会：如果把公司的制度、流程、案例都喂给 AI，新员工入职第一天就能问"试用期怎么转正""报销流程是什么"，AI 直接给答案。你现在的培训体系，能被 AI 替代多少？</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-tag tag-hangzhou">杭州动态</div>
+      <div class="news-title">杭州 AI 产业园区推出"AI+HR 创业加速计划"：3 个月孵化 10 家企业</div>
+      <div class="news-body">杭州 AI 产业园区联合多家投资机构，推出"AI+HR 创业加速计划"，提供免费办公场地、技术支持、资源对接、投资机会。首期招募 10 家企业,重点支持智能招聘、培训、绩效、组织诊断方向。这对你意味着什么？如果你 35 岁前要有自己的公司，现在可能是最好的窗口期——杭州的政策、资源、生态都在向 AI+HR 倾斜。你的 HR 经验+AI 能力，可能是最稀缺的组合。</div>
+    </div>
+  </div>
+
+  <!-- 板块二:每日一词 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-word">💬</div>
+      <div class="section-title">每日一词</div>
+      <div class="section-sub">1 新 4 旧</div>
+    </div>
+
+    <div class="word-top">
+      <div class="word-en">Heuristic</div>
+      <div class="word-phonetic-row">
+        <span class="word-phonetic">/hjʊˈrɪstɪk/</span>
+        <button class="word-play" onclick="new Audio('https://dict.youdao.com/dictvoice?audio=Heuristic&type=2').play()">▶</button>
+      </div>
+      <div class="word-zh">启发式;经验法则;捷径思维</div>
+      <div class="word-usage">常见搭配: heuristic method 启发式方法 / cognitive heuristic 认知捷径 / heuristic bias 启发式偏差</div>
+    </div>
+
+    <div class="word-quote-wrap">
+      <div class="word-quote">"A <em>heuristic</em> is a simple procedure that helps find adequate, though often imperfect, answers to difficult questions. The word comes from the same root as 'eureka'."</div>
+      <div class="word-quote-author">— Daniel Kahneman, 《思考，快与慢》</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="word-recall-label">RECALL · 回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-27</div>
+        <div>
+          <div class="recall-word">Alignment</div>
+          <div class="recall-zh">对齐;一致性;校准</div>
+        </div>
+        <div class="recall-hint">确保所有人听到的是同一件事</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-26</div>
+        <div>
+          <div class="recall-word">Discovery</div>
+          <div class="recall-zh">发现;探索;验证</div>
+        </div>
+        <div class="recall-hint">在做之前先验证值不值得做</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-25</div>
+        <div>
+          <div class="recall-word">Pivot</div>
+          <div class="recall-zh">转向;调整方向</div>
+        </div>
+        <div class="recall-hint">保留核心,改变路径</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-date">05-22</div>
+        <div>
+          <div class="recall-word">Leverage</div>
+          <div class="recall-zh">杠杆;借力放大</div>
+        </div>
+        <div class="recall-hint">用最小资源撬动最大结果</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三:今日书摘 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-book">📚</div>
+      <div class="section-title">今日书摘</div>
+      <div class="section-sub">丹尼尔·卡尼曼</div>
+    </div>
+
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《思考，快与慢》</div>
+      <div class="book-core">人类的思维由两套系统驱动：系统1（快思考）自动、直觉、情绪化；系统2（慢思考）需要努力、逻辑、理性。大部分时候我们依赖系统1做决策——它快速、省力，但容易被"启发式"（heuristic）误导，产生系统性偏差。理解这两套系统如何运作，是避免决策陷阱的第一步。</div>
+    </div>
+
+    <div class="book-body">
+      <div class="insight">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">系统1与系统2：两种思维模式的本质差异</div>
+        <div class="insight-body">卡尼曼用一个经典问题说明两套系统的区别："球拍和球共11美元，球拍比球贵10美元，球多少钱？"大部分人脱口而出"1美元"——这是系统1的答案，快速、直觉、错误。正确答案是0.5美元（球拍10.5美元）。系统1自动运行，不需要努力，擅长模式识别、情绪反应、快速判断；系统2需要主动调用，消耗认知资源，负责复杂计算、逻辑推理、自我控制。问题在于：系统1太强势，系统2太懒。我们以为自己在"思考"，其实大部分时候只是系统1在自动驾驶。卡尼曼说："系统2以为自己是主角，其实只是系统1的公关部门——为系统1的直觉找理由。"</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">锚定效应：你的判断早已被"第一个数字"绑架</div>
+        <div class="insight-body">卡尼曼做过一个实验：让两组人估算联合国中非洲国家的比例。第一组先转一个轮盘，停在10，然后问"比例是高于还是低于10%？"再让他们估算具体数字。第二组轮盘停在65。结果：第一组平均估算25%，第二组平均估算45%——轮盘上的随机数字，竟然影响了他们的判断。这就是"锚定效应"（anchoring）：人类的判断会被最先接触到的信息"锚定"，即使那个信息完全无关。这在 HR 工作中无处不在：面试时看到简历上的"前公司年薪30万"，你对候选人的期望薪资判断就被锚定了；绩效评估时，员工去年的评分会锚定今年的评分。卡尼曼的建议：在做重要判断前，先问自己"我是不是被某个数字锚定了？"</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">损失厌恶：为什么"怕输"比"想赢"更强烈</div>
+        <div class="insight-body">卡尼曼发现：人类对"失去"的痛苦，是对"得到"快乐的2倍。举个例子：你丢了100元的痛苦，需要捡到200元才能抵消。这就是"损失厌恶"（loss aversion）。它导致很多非理性决策：1)不愿止损——股票亏了不卖，因为"卖了就真亏了"；2)过度保守——不敢尝试新机会，因为"万一失败怎么办"；3)沉没成本谬误——项目明显失败还继续投入，因为"已经投了这么多"。卡尼曼说：损失厌恶是进化的产物——在原始社会，失去食物可能致命，但多得到一些食物只是锦上添花。但在现代社会，这种本能反而成了决策陷阱。他的建议：在做决策时，把"损失"和"收益"放在同一个天平上，问自己"如果这是别人的选择，我会怎么建议？"</div>
+      </div>
+
+      <div class="extend-wrap">
+        <div class="extend-label">IVAN · 延伸思考</div>
+        <div class="extend-body">你现在做 HR，每天都在做决策：招谁、不招谁、给谁涨薪、谁该晋升。但你有没有想过：你的决策有多少是系统1的"直觉"，有多少是系统2的"理性"？举个例子：面试时，候选人穿着得体、谈吐自信，你觉得"这人不错"——这是系统1。但如果你追问自己"他具体哪个回答证明了他的能力？"，可能发现他其实没说什么实质内容。再比如：你不愿意辞退一个老员工，因为"他跟了公司这么多年"——这是损失厌恶+沉没成本。但如果你问自己"如果他是新员工，我还会留他吗？"，答案可能是否定的。卡尼曼会问你：你的 HR 决策体系，有没有"对抗系统1偏差"的机制？比如：面试评分表（对抗晕轮效应）、盲选简历（对抗锚定效应）、强制排序（对抗损失厌恶）。如果你 35 岁前要有自己的公司，那从现在开始，你需要练习的不是"做更多决策"，而是"做更少但更好的决策"——这需要你理解自己的思维是如何被系统1劫持的。</div>
+      </div>
+
+      <div class="tmr-wrap">
+        <div class="tmr-label">TOMORROW'S READING LIST · 三选一</div>
+        <div class="tmr-grid">
+          <div class="tmr-card">
+            <div class="tmr-tag">组织行为</div>
+            <div class="tmr-title">《影响力》</div>
+            <div class="tmr-desc">罗伯特·西奥迪尼。揭示说服的六大原理，理解人类行为背后的心理机制。</div>
+          </div>
+          <div class="tmr-card">
+            <div class="tmr-tag">战略思维</div>
+            <div class="tmr-title">《好战略，坏战略》</div>
+            <div class="tmr-desc">理查德·鲁梅尔特。什么是真正的战略，以及如何识别伪装成战略的空话。</div>
+          </div>
+          <div class="tmr-card">
+            <div class="tmr-tag">创新方法</div>
+            <div class="tmr-title">《精益创业》</div>
+            <div class="tmr-desc">埃里克·莱斯。用最小成本验证想法，快速迭代，避免浪费时间在错误方向。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">每日铸读 · 2026.05.28 · 星期四</div>
+    <div class="footer-right">— Think 为 Ivan 铸造</div>
+  </div>
+
+</div>
+</body>
+</html>
