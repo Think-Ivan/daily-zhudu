@@ -3,72 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>铸读 · 第14期 · 2026年6月8日</title>
+<title>每日铸读 · 2026.06.08 · 第14期</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #f5f5f7; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #1d1d1f; }
-  .container { max-width: 720px; margin: 0 auto; padding: 40px 24px 64px; }
-
-  /* Header */
-  .header { text-align: center; margin-bottom: 36px; }
-  .header-label { font-size: 13px; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-  .header-title { font-size: 28px; font-weight: 700; color: #1d1d1f; letter-spacing: -0.5px; }
-  .header-date { font-size: 14px; color: #888; margin-top: 6px; }
-
-  /* Section */
-  .section { margin-bottom: 32px; }
-  .section-title { font-size: 12px; font-weight: 600; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; padding-left: 2px; }
-
-  /* Card */
-  .card { background: #fff; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); overflow: hidden; }
-
-  /* News */
-  .news-item { padding: 18px 22px; border-bottom: 1px solid #f0f0f0; }
+  body { background: #f5f3ee; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #2c2c2c; min-height: 100vh; }
+  .top-bar { height: 6px; background: linear-gradient(90deg, #c9a96e 0%, #a8c4b8 35%, #7ba7bc 65%, #9b8ea8 85%, #e8a87c 100%); }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 32px 64px; }
+  .header { margin-bottom: 36px; }
+  .header-meta { font-size: 12px; color: #999; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: #888; margin-top: 6px; }
+  .section { margin-bottom: 32px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section-header { padding: 16px 24px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f0ede8; }
+  .section-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #999; }
+  .news-dot { background: #7ba7bc; }
+  .news-list { padding: 0; }
+  .news-item { padding: 18px 24px; border-bottom: 1px solid #f5f3ee; }
   .news-item:last-child { border-bottom: none; }
-  .news-tag { display: inline-block; font-size: 11px; font-weight: 600; color: #fff; background: #1d1d1f; border-radius: 4px; padding: 2px 7px; margin-bottom: 7px; letter-spacing: 0.5px; }
-  .news-title { font-size: 15px; font-weight: 600; color: #1d1d1f; margin-bottom: 6px; line-height: 1.4; }
-  .news-body { font-size: 13px; color: #555; line-height: 1.7; }
-
-  /* Word */
-  .word-top { background: #1d1d1f; color: #fff; padding: 28px 28px 22px; }
-  .word-en { font-size: 40px; font-weight: 700; letter-spacing: -1px; display: flex; align-items: center; gap: 14px; }
-  .word-phonetic { font-size: 16px; font-weight: 400; color: #aaa; margin-top: 4px; }
-  .word-cn { font-size: 16px; color: #ccc; margin-top: 6px; }
-  .word-level { display: inline-block; font-size: 11px; background: #fff; color: #1d1d1f; border-radius: 4px; padding: 2px 7px; margin-top: 10px; font-weight: 600; }
-  .audio-btn { background: rgba(255,255,255,0.15); border: none; border-radius: 8px; padding: 6px 12px; color: #fff; font-size: 13px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; }
-  .audio-btn:hover { background: rgba(255,255,255,0.25); }
-
-  .word-quote-wrap { padding: 20px 28px; border-bottom: 1px solid #f0f0f0; }
-  .word-quote { font-size: 14px; color: #444; line-height: 1.75; font-style: italic; }
-  .word-quote span { color: #1d1d1f; font-style: normal; font-weight: 700; }
-
-  .word-recall-wrap { padding: 20px 28px; }
-  .word-recall-title { font-size: 12px; color: #888; letter-spacing: 1px; margin-bottom: 12px; font-weight: 600; }
-  .word-recall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .word-recall-item { background: #f8f8f8; border-radius: 10px; padding: 12px 14px; }
-  .word-recall-en { font-size: 15px; font-weight: 700; color: #1d1d1f; }
-  .word-recall-cn { font-size: 12px; color: #888; margin-top: 2px; }
-  .word-recall-ex { font-size: 12px; color: #666; margin-top: 6px; line-height: 1.5; font-style: italic; }
-
-  /* Book */
-  .book-header { background: #f8f6f0; padding: 24px 28px 20px; border-bottom: 1px solid #ede9df; }
-  .book-label { font-size: 11px; color: #b09060; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 8px; }
-  .book-title { font-size: 22px; font-weight: 700; color: #2c2416; }
-  .book-author { font-size: 13px; color: #8a7a5a; margin-top: 4px; }
-  .book-body { padding: 24px 28px; }
-  .book-quote { background: #f8f6f0; border-left: 3px solid #c9a96e; padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 18px; font-size: 15px; color: #2c2416; font-style: italic; line-height: 1.7; font-weight: 500; }
-  .book-para { font-size: 14px; color: #444; line-height: 1.85; margin-bottom: 14px; }
-  .book-para:last-child { margin-bottom: 0; }
-
-  /* Tomorrow */
+  .news-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; margin-bottom: 7px; }
+  .tag-model { background: #e8f0f5; color: #5a8fa8; }
+  .tag-global { background: #f0ede8; color: #a07850; }
+  .tag-china { background: #edf5f0; color: #5a9070; }
+  .tag-enterprise { background: #f0edf5; color: #7a6898; }
+  .tag-hangzhou { background: #fdf0e8; color: #c07840; }
+  .news-title { font-size: 15px; font-weight: 700; color: #1a1a1a; line-height: 1.4; margin-bottom: 6px; }
+  .news-body { font-size: 13px; color: #555; line-height: 1.75; }
+  .word-dot { background: #c9a96e; }
+  .word-top { padding: 24px 24px 20px; border-bottom: 1px solid #f0ede8; }
+  .word-en-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+  .word-en { font-size: 36px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.02em; }
+  .word-phonetic { font-size: 14px; color: #999; font-style: italic; }
+  .word-audio-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #c9a96e; background: #fdf8f0; border: 1px solid #e8d8b8; border-radius: 6px; padding: 4px 10px; cursor: pointer; text-decoration: none; margin-left: 4px; }
+  .word-audio-btn:hover { background: #f5ede0; }
+  .word-cn { font-size: 14px; color: #666; margin-bottom: 10px; }
+  .word-collocations { display: flex; flex-wrap: wrap; gap: 6px; }
+  .word-colloc { font-size: 12px; background: #fdf8f0; border: 1px solid #e8d8b8; color: #a07840; padding: 3px 10px; border-radius: 20px; }
+  .word-quote-wrap { padding: 18px 24px; border-bottom: 1px solid #f0ede8; background: #fdfaf5; }
+  .word-quote { font-size: 14px; color: #555; line-height: 1.8; font-style: italic; }
+  .word-quote em { font-style: normal; font-weight: 700; color: #c9a96e; background: #fdf0d0; padding: 0 3px; border-radius: 3px; }
+  .word-quote-source { font-size: 12px; color: #aaa; margin-top: 6px; text-align: right; }
+  .word-recall-wrap { padding: 18px 24px; }
+  .word-recall-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #bbb; margin-bottom: 12px; }
+  .word-recall-item { display: grid; grid-template-columns: 56px 1fr auto auto; gap: 0 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid #f5f3ee; }
+  .word-recall-item:last-child { border-bottom: none; }
+  .word-recall-en { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+  .word-recall-cn { font-size: 13px; color: #666; }
+  .word-recall-audio { display: inline-flex; align-items: center; color: #c9a96e; text-decoration: none; font-size: 14px; }
+  .word-recall-date { font-size: 11px; color: #ccc; white-space: nowrap; }
+  .book-dot { background: #a8c4b8; }
+  .book-header { padding: 24px 24px 18px; border-bottom: 1px solid #f0ede8; }
+  .book-label { font-size: 11px; color: #aaa; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .book-title { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; }
+  .book-author { font-size: 13px; color: #888; }
+  .book-core { font-size: 14px; color: #555; line-height: 1.75; margin-top: 12px; padding: 12px 16px; background: #f0f5f2; border-left: 3px solid #a8c4b8; border-radius: 0 6px 6px 0; }
+  .book-body { padding: 24px 24px; }
+  .insight { margin-bottom: 22px; }
+  .insight:last-of-type { margin-bottom: 0; }
+  .insight-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 7px; display: flex; align-items: center; gap: 8px; }
+  .insight-num { width: 20px; height: 20px; border-radius: 50%; background: #a8c4b8; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .insight-body { font-size: 13px; color: #555; line-height: 1.8; padding-left: 28px; }
+  .book-divider { height: 1px; background: #f0ede8; margin: 22px 0; }
+  .extend-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #bbb; margin-bottom: 10px; }
+  .extend-body { font-size: 13px; color: #555; line-height: 1.85; background: #fdfaf5; border: 1px solid #ede8de; border-radius: 8px; padding: 14px 16px; }
+  .tmr-wrap { padding: 20px 24px 24px; border-top: 1px solid #f0ede8; }
+  .tmr-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #bbb; margin-bottom: 14px; }
   .tmr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .tmr-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 16px 16px 14px; }
-  .tmr-title { font-size: 14px; font-weight: 700; color: #1d1d1f; margin-bottom: 6px; }
-  .tmr-desc { font-size: 12px; color: #777; line-height: 1.6; }
-
-  /* Footer */
-  .footer { margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #bbb; padding: 0 2px; }
-
+  .tmr-card { background: #f8f6f2; border: 1px solid #ede8de; border-radius: 8px; padding: 14px 14px 12px; }
+  .tmr-tag { font-size: 10px; color: #aaa; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .tmr-title { font-size: 13px; font-weight: 700; color: #1a1a1a; line-height: 1.4; margin-bottom: 6px; }
+  .tmr-desc { font-size: 12px; color: #888; line-height: 1.6; }
+  .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e8e4de; font-size: 12px; color: #bbb; }
   @media (max-width: 600px) {
     .container { padding: 28px 18px 52px; }
     .header-title { font-size: 22px; }
@@ -89,163 +94,190 @@
 </style>
 </head>
 <body>
+<div class="top-bar"></div>
 <div class="container">
 
-  <!-- Header -->
   <div class="header">
-    <div class="header-label">铸读 · 第14期</div>
-    <div class="header-title">Think × Ivan 每日精读</div>
-    <div class="header-date">2026年6月8日 &nbsp;星期一</div>
+    <div class="header-meta">MONDAY · 2026.06.08 · 第14期</div>
+    <div class="header-title">每日铸读</div>
+    <div class="header-sub">AI 动态 · 每日一词 · 今日书摘</div>
   </div>
 
-  <!-- Section 1: AI News -->
+  <!-- AI 新闻 -->
   <div class="section">
-    <div class="section-title">AI 新闻速览</div>
-    <div class="card">
+    <div class="section-header">
+      <div class="section-dot news-dot"></div>
+      <div class="section-label">AI NEWS</div>
+    </div>
+    <div class="news-list">
 
       <div class="news-item">
-        <div class="news-tag">大模型</div>
+        <div class="news-tag tag-model">大模型</div>
         <div class="news-title">Anthropic 发布 Claude 4 系列，推理能力大幅跃升</div>
-        <div class="news-body">Anthropic 正式推出 Claude 4 系列模型，其中旗舰版 Claude Opus 4 在数学推理、代码生成及长文本理解方面均取得显著突破。新模型在多项基准测试中超越同期竞品，并引入了更强的工具调用与多步推理能力。企业版 API 同步开放，部分客户已进入内测阶段。</div>
+        <div class="news-body">Anthropic 于六月初正式发布 Claude 4 系列模型，涵盖 Opus、Sonnet 和 Haiku 三个层级。新系列在数学推理、代码生成和长上下文理解方面均有显著提升，Opus 4 在多项国际基准测试中超越同期竞品。Anthropic 同步推出扩展上下文窗口（最高 2M tokens）和多模态增强能力，企业客户可通过 API 直接调用。此次发布标志着 Claude 系列从"对话助手"向"自主智能体"方向的重要转型，代理任务执行能力已可处理跨系统的复杂工作流。</div>
       </div>
 
       <div class="news-item">
-        <div class="news-tag">智能体</div>
-        <div class="news-title">OpenAI 推出 Operator 2.0，自主完成复杂工作流</div>
-        <div class="news-body">OpenAI 升级了其网页操作智能体 Operator，新版本支持跨平台任务编排，可自动完成订票、填表、数据收集等多步骤操作。2.0 版本加入了错误自纠机制，任务完成率相比上一版提升约40%。目前向 ChatGPT Plus 及企业版用户开放。</div>
+        <div class="news-tag tag-global">全球动态</div>
+        <div class="news-title">OpenAI GPT-5 扩大公测，实时视频理解引发广泛关注</div>
+        <div class="news-body">OpenAI 将 GPT-5 向更广泛用户群开放测试，其实时视频理解和语音交互能力尤为引人关注。GPT-5 支持在对话中直接分析实时摄像头画面，并能在毫秒级延迟内进行语音回应，体验接近真人通话。部分测试用户反映其在情感感知和细粒度指令遵循上表现明显优于前代。与此同时，围绕 AI 系统是否具备"工具性欺骗"行为的安全研究讨论也随之升温，引发学界与监管方的广泛关注。</div>
       </div>
 
       <div class="news-item">
-        <div class="news-tag">多模态</div>
-        <div class="news-title">Google DeepMind Gemini 2.5 Pro 视频理解能力刷新记录</div>
-        <div class="news-body">Google DeepMind 更新了 Gemini 2.5 Pro 的多模态能力，新版本可处理长达两小时的视频内容，支持跨帧语义理解与时序推理。在视频问答基准 EgoSchema 和 VideoMME 上均取得最高分。该能力已集成至 Google Workspace 的 AI 助手功能中。</div>
+        <div class="news-tag tag-china">国内动态</div>
+        <div class="news-title">阿里云通义千问 3.0 发布，强化企业级部署生态</div>
+        <div class="news-body">阿里云在 2026 年云栖大会上发布通义千问 3.0，重点面向企业私有化部署场景进行优化。新版本支持更灵活的 LoRA 微调和企业知识库接入，推理速度较前代提升约 40%。阿里云同步发布"百炼"平台 2.0，提供从模型训练到应用发布的一站式工具链，降低中小企业 AI 落地门槛。值得关注的是，通义千问 3.0 在中文法律、医疗和人力资源等专业领域的指令遵循准确率有显著提升，HR 科技领域的应用落地进一步加速。</div>
       </div>
 
       <div class="news-item">
-        <div class="news-tag">行业动态</div>
-        <div class="news-title">Meta 开源 Llama 4 Scout，轻量模型赢得开发者青睐</div>
-        <div class="news-body">Meta 在 Llama 4 系列中新增 Scout 轻量版本，参数量仅170亿，但在指令遵循和对话质量上表现突出，适合在消费级 GPU 上本地部署。开源发布后迅速成为 Hugging Face 月度下载量最高的模型之一，社区微调版本已超过300个。</div>
+        <div class="news-tag tag-enterprise">企业应用</div>
+        <div class="news-title">AI 招聘工具渗透率突破 60%，"算法偏见"监管趋严</div>
+        <div class="news-body">最新行业报告显示，全球头部企业中使用 AI 辅助招聘工具的比例已突破 60%，涵盖简历筛选、面试评估和离职预测等环节。然而，欧盟 AI Act 正式生效后，"高风险 AI 系统"在招聘场景的使用须通过透明度审计，中国人力资源和社会保障部也在研究类似规范框架。多家 HR SaaS 厂商开始主动提供"可解释性报告"功能，帮助企业证明 AI 决策依据合法合规。对 HRD 而言，理解工具的算法逻辑、建立人机协作审核机制，正成为核心竞争力。</div>
       </div>
 
       <div class="news-item">
-        <div class="news-tag">AI应用</div>
-        <div class="news-title">字节跳动豆包大模型接入企业 HR 场景，简历筛选效率提升5倍</div>
-        <div class="news-body">字节跳动旗下豆包大模型宣布与多家头部猎头和 HR SaaS 平台完成集成，提供简历结构化解析、岗位匹配打分及面试问题生成等功能。据合作方反馈，使用 AI 辅助筛选后，初筛时间从平均2天压缩至4小时。该能力已通过飞书招聘平台向企业客户开放。</div>
+        <div class="news-tag tag-hangzhou">杭州动态</div>
+        <div class="news-title">杭州 AI 产业园区二期开园，数字人才缺口持续扩大</div>
+        <div class="news-body">杭州钱塘新区 AI 产业园区二期正式开园，引入包括大模型应用、具身智能和 AIGC 内容生成在内的多家创业企业，首批入驻超过 80 家。杭州市人才市场最新数据显示，AI 相关岗位需求同比增长 112%，而具备"AI + 业务"复合能力的人才供给严重不足，AI 产品经理、AI 训练师和 AIGC 内容运营岗位缺口尤为突出。对有意创业或转型的从业者而言，杭州当前的人才结构性机会或许是值得把握的窗口期。</div>
       </div>
 
     </div>
   </div>
 
-  <!-- Section 2: Word -->
+  <!-- 每日一词 -->
   <div class="section">
-    <div class="section-title">每日一词</div>
-    <div class="card">
+    <div class="section-header">
+      <div class="section-dot word-dot"></div>
+      <div class="section-label">WORD OF THE DAY</div>
+    </div>
 
-      <div class="word-top">
+    <div class="word-top">
+      <div class="word-en-row">
         <div class="word-en">abstract</div>
         <div class="word-phonetic">/ˈæbstrækt/</div>
-        <div class="word-cn">抽象的；摘要；提取</div>
-        <div><span class="word-level">CET-4</span></div>
-        <a class="audio-btn" href="https://dict.youdao.com/dictvoice?audio=abstract&type=1" target="_blank">
-          &#9654; 听发音
-        </a>
+        <a class="word-audio-btn" href="https://dict.youdao.com/dictvoice?audio=abstract&type=1" target="_blank">&#9654; 发音</a>
       </div>
-
-      <div class="word-quote-wrap">
-        <div class="word-quote">
-          Strategy requires <span>abstract</span> thinking — the ability to step back from daily operations and see the larger pattern that others miss.
-          <br><br>
-          <span style="font-style:normal;font-weight:400;color:#666;font-size:13px;">战略需要抽象思维——一种从日常运营中抽离、看到他人所忽视的更大格局的能力。</span>
-        </div>
+      <div class="word-cn">v./adj. &nbsp;抽象的；提取；摘要 &nbsp;|&nbsp; CET-4</div>
+      <div class="word-collocations">
+        <span class="word-colloc">abstract thinking</span>
+        <span class="word-colloc">abstract art</span>
+        <span class="word-colloc">abstract concept</span>
+        <span class="word-colloc">in the abstract</span>
       </div>
+    </div>
 
-      <div class="word-recall-wrap">
-        <div class="word-recall-title">老词回顾 · REVIEW</div>
-        <div class="word-recall-grid">
-          <div class="word-recall-item">
-            <div class="word-recall-en">abandon</div>
-            <div class="word-recall-cn">放弃；遗弃</div>
-            <div class="word-recall-ex">He abandoned the project halfway through.</div>
-          </div>
-          <div class="word-recall-item">
-            <div class="word-recall-en">academic</div>
-            <div class="word-recall-cn">学术的；学业的</div>
-            <div class="word-recall-ex">Her academic performance improved steadily.</div>
-          </div>
-          <div class="word-recall-item">
-            <div class="word-recall-en">accelerate</div>
-            <div class="word-recall-cn">加速；促进</div>
-            <div class="word-recall-ex">Technology can accelerate organizational change.</div>
-          </div>
-          <div class="word-recall-item">
-            <div class="word-recall-en">access</div>
-            <div class="word-recall-cn">获取；通道；访问</div>
-            <div class="word-recall-ex">All employees have access to the learning platform.</div>
-          </div>
-        </div>
+    <div class="word-quote-wrap">
+      <div class="word-quote">"All <em>abstract</em> knowledge is ultimately the servant of some concrete human purpose."</div>
+      <div class="word-quote-source">— John Dewey，《民主与教育》</div>
+    </div>
+
+    <div class="word-recall-wrap">
+      <div class="word-recall-label">RECALL · 老词回顾</div>
+      <div class="word-recall-item">
+        <div class="word-recall-en">abandon</div>
+        <div class="word-recall-cn">放弃；抛弃</div>
+        <a class="word-recall-audio" href="https://dict.youdao.com/dictvoice?audio=abandon&type=1" target="_blank">&#9654;</a>
+        <div class="word-recall-date">05-31</div>
       </div>
-
+      <div class="word-recall-item">
+        <div class="word-recall-en">academic</div>
+        <div class="word-recall-cn">学术的；理论的</div>
+        <a class="word-recall-audio" href="https://dict.youdao.com/dictvoice?audio=academic&type=1" target="_blank">&#9654;</a>
+        <div class="word-recall-date">05-30</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-en">accelerate</div>
+        <div class="word-recall-cn">加速；促进</div>
+        <a class="word-recall-audio" href="https://dict.youdao.com/dictvoice?audio=accelerate&type=1" target="_blank">&#9654;</a>
+        <div class="word-recall-date">05-29</div>
+      </div>
+      <div class="word-recall-item">
+        <div class="word-recall-en">access</div>
+        <div class="word-recall-cn">接近；访问；通道</div>
+        <a class="word-recall-audio" href="https://dict.youdao.com/dictvoice?audio=access&type=1" target="_blank">&#9654;</a>
+        <div class="word-recall-date">05-28</div>
+      </div>
     </div>
   </div>
 
-  <!-- Section 3: Book -->
+  <!-- 今日书摘 -->
   <div class="section">
-    <div class="section-title">今日书摘</div>
-    <div class="card">
+    <div class="section-header">
+      <div class="section-dot book-dot"></div>
+      <div class="section-label">TODAY'S READING</div>
+    </div>
 
-      <div class="book-header">
-        <div class="book-label">TODAY'S READING</div>
-        <div class="book-title">《非暴力沟通》</div>
-        <div class="book-author">马歇尔·卢森堡 Marshall B. Rosenberg</div>
+    <div class="book-header">
+      <div class="book-label">TODAY'S BOOK</div>
+      <div class="book-title">《非暴力沟通》</div>
+      <div class="book-author">马歇尔·卢森堡（Marshall B. Rosenberg）</div>
+      <div class="book-core">真正的沟通始于放下评判，用观察代替指责，用请求代替要求。</div>
+    </div>
+
+    <div class="book-body">
+
+      <div class="insight">
+        <div class="insight-title">
+          <div class="insight-num">1</div>
+          观察 vs 评判：区分你看到的和你解读的
+        </div>
+        <div class="insight-body">非暴力沟通的第一步，是学会区分"观察"与"评判"。观察是具体的、可验证的事实——"这份报告交晚了三天"；评判是附加了解读的结论——"你总是不靠谱"。两者之间的距离，往往就是一场争吵的起点。卢森堡认为，当我们混淆观察与评判时，对方听到的不是信息，而是攻击。对 HRD 而言，这一区分在绩效反馈中至关重要：描述行为，而非定性人格，才能让被评估者真正听进去。</div>
       </div>
 
-      <div class="book-body">
-        <div class="book-quote">"也许我们并不认为自己的谈话方式是'暴力'的，但我们的言语确实常常引发自己和他人的痛苦。"</div>
-
-        <div class="book-para">
-          非暴力沟通的核心，在于将我们习以为常的评判、指责和要求，转化为对观察、感受、需要与请求的清晰表达。卢森堡指出，大多数冲突的根源并非立场的对立，而是我们未曾学会用真实的需要来说话。当我们说"你总是这样"，我们其实是在表达某种深层的失落或渴望，只是用了一种让对方防御的方式。
+      <div class="insight">
+        <div class="insight-title">
+          <div class="insight-num">2</div>
+          感受来自需要：情绪是需要被满足或未被满足的信号
         </div>
+        <div class="insight-body">书中提出，我们的情绪不是由他人的行为"造成"的，而是我们内心未被满足的需要在发声。愤怒背后可能是对尊重的渴望，焦虑背后可能是对确定性的需求。这个视角颠覆了常见的归因模式——"都是你让我生气的"——转而让人去问："我此刻真正需要什么？"在组织里，员工的抱怨往往是需要的信号而非单纯的负面情绪，学会倾听这层意思，是 HR 高手的标志。</div>
+      </div>
 
-        <div class="book-para">
-          观察与评论的区分，是非暴力沟通的第一道门槛。"你在会议上打断了我三次"是观察；"你根本不尊重我"是评论。前者指向具体事实，后者触发防御。卢森堡认为，我们的语言训练几乎从未教会我们做出不带评判的观察，因此绝大多数人在冲突中说出的第一句话，往往就已经关上了对话的大门。
+      <div class="insight">
+        <div class="insight-title">
+          <div class="insight-num">3</div>
+          请求 vs 要求：真正的请求允许对方说"不"
         </div>
+        <div class="insight-body">卢森堡做出一个精妙的区分：如果对方说"不"时你会愤怒或惩罚，那你发出的是"要求"，不是"请求"。真正的请求尊重对方的自主性，即便被拒绝也不会破坏关系。在职场中，这一点对管理者尤为挑战——权力结构天然使"请求"变成"要求"。如何在上下级之间建立真实的对话空间，而不是走形式的沟通，是非暴力沟通带给管理实践最深的提问。</div>
+      </div>
 
-        <div class="book-para">
-          感受与需要的连接，构成了非暴力沟通最具治愈性的部分。当我们能够说出"我感到沮丧，因为我需要被倾听"，而不是"你让我很失望"，责任的归属就发生了根本转变。感受不是他人造成的，而是我们内在需要是否得到满足的信号。这一认知，既是对自我的解放，也是对关系的善意。
-        </div>
+      <div class="book-divider"></div>
 
-        <div class="book-para">
-          请求而非要求，是非暴力沟通的最后一环，也是最难的一环。真正的请求包含两个特质：具体可行，以及接受拒绝。"你能在今天下班前给我一个回复吗"是请求；"你必须重视我的工作"是要求。卢森堡提醒我们：凡是不能接受"不"作为答案的，都不是请求，而是以温和面目出现的强迫。
-        </div>
+      <div class="extend-label">IVAN'S ANGLE · 延伸思考</div>
+      <div class="extend-body">
+        <p style="margin-bottom: 10px;">作为 HRD，你每天都在做"高风险对话"：给业绩不达标的员工反馈、处理团队冲突、主持离职面谈。这些场景里，非暴力沟通不是"好好说话"的技巧，而是一种结构化的思维框架——在开口之前，先问自己：我描述的是事实还是判断？我表达的是感受还是指责？我提出的是请求还是施压？</p>
+        <p style="margin-bottom: 10px;">离职面谈是最考验这一框架的场合。多数离职面谈流于形式，员工说"个人发展"，HR 点头记录，双方都知道这不是真相。但如果你能用非暴力沟通的方式，先说出你观察到的事实，再真诚表达组织的遗憾和需要，最后提出一个开放式请求——"你愿意告诉我一个真实的原因吗"——对话质量会截然不同。真实的离职信息，才是组织最宝贵的镜子。</p>
+        <p>绩效反馈同理。"你这季度表现不好"是评判；"你有三个项目交付延期，其中两个影响了客户满意度评分"是观察。后者让人有地方站，前者只让人想防御。非暴力沟通的底层逻辑是：你越具体、越去评判，对方反而越愿意接受。这对有意创业、未来要带团队的 Ivan 来说，值得反复打磨成习惯。</p>
       </div>
 
     </div>
-  </div>
 
-  <!-- Section 4: Tomorrow -->
-  <div class="section">
-    <div class="section-title">明日书单 · 三选一</div>
-    <div class="tmr-grid">
-      <div class="tmr-card">
-        <div class="tmr-title">《刻意练习》</div>
-        <div class="tmr-desc">Anders Ericsson 揭示顶级专家如何通过有目的的练习突破平台期，颠覆"天才论"的经典之作。</div>
-      </div>
-      <div class="tmr-card">
-        <div class="tmr-title">《零边际成本社会》</div>
-        <div class="tmr-desc">杰里米·里夫金预测数字化与共享经济将如何重塑商业模式，为理解未来组织形态提供宏观框架。</div>
-      </div>
-      <div class="tmr-card">
-        <div class="tmr-title">《刻意暂停》</div>
-        <div class="tmr-desc">Robert Pozen 的高效能管理法，聚焦如何在信息过载时代保持深度工作状态，适合高压职场人群。</div>
+    <div class="tmr-wrap">
+      <div class="tmr-label">TOMORROW'S PICKS · 明日书单</div>
+      <div class="tmr-grid">
+        <div class="tmr-card">
+          <div class="tmr-tag">管理 · 学习</div>
+          <div class="tmr-title">《刻意练习》</div>
+          <div class="tmr-desc">安德斯·艾利克森著，10000小时背后的真正秘密——天才不是天生的，而是刻意设计出来的。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">创新 · 商业</div>
+          <div class="tmr-title">《创新者的基因》</div>
+          <div class="tmr-desc">克莱顿·克里斯坦森，颠覆式创新者共有的五种发现技能：联想、质疑、观察、实验、交流。</div>
+        </div>
+        <div class="tmr-card">
+          <div class="tmr-tag">心理 · 成长</div>
+          <div class="tmr-title">《被讨厌的勇气》</div>
+          <div class="tmr-desc">岸见一郎，阿德勒心理学对话录。课题分离、活在当下——一本让人重新定义"自由"的书。</div>
+        </div>
       </div>
     </div>
+
   </div>
 
-  <!-- Footer -->
   <div class="footer">
-    <span>铸读 · 第14期</span>
-    <span>Think × Ivan</span>
-    <span>2026-06-08</span>
+    <span>Think · Ivan 铸读计划</span>
+    <span>第14期 · 2026.06.08</span>
+    <span>每日精进，不问涨落</span>
   </div>
 
 </div>
